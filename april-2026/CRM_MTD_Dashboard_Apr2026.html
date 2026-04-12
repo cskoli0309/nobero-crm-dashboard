@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nobero CRM — April 2026</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f7fa;color:#1a1d23;font-size:14px;line-height:1.5}
+  .header{background:#fff;border-bottom:1px solid #e5e7eb;padding:16px 24px;display:flex;align-items:center;gap:16px}
+  .header-logo{font-size:18px;font-weight:700;color:#111;letter-spacing:-0.3px}
+  .header-sub{font-size:13px;color:#6b7280}
+  .header-badge{margin-left:auto;background:#eff6ff;color:#2563eb;font-size:12px;font-weight:600;padding:3px 10px;border-radius:12px;border:1px solid #bfdbfe}
+  .nav{display:flex;background:#fff;border-bottom:1px solid #e5e7eb;padding:0 24px}
+  .nav-tab{padding:14px 20px;font-size:13px;font-weight:500;color:#6b7280;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+  .nav-tab:hover{color:#111}.nav-tab.active{color:#2563eb;border-bottom-color:#2563eb;font-weight:600}
+  .content{padding:24px;max-width:1400px;margin:0 auto}
+  .tab-pane{display:none}.tab-pane.active{display:block}
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+  .kpi-card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:20px 22px}
+  .kpi-label{font-size:12px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .kpi-val{font-size:26px;font-weight:700;color:#111;letter-spacing:-0.5px}
+  .kpi-sub{font-size:12px;color:#9ca3af;margin-top:4px}
+  .kpi-card.accent{background:#eff6ff;border-color:#bfdbfe}.kpi-card.accent .kpi-val{color:#1d4ed8}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;margin-bottom:20px;overflow:hidden}
+  .card-header{padding:16px 20px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .card-title{font-size:14px;font-weight:600;color:#111;display:flex;align-items:center;gap:8px}
+  .card-body{padding:20px}
+  .split-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+  .split-card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:20px}
+  .split-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9ca3af;margin-bottom:4px}
+  .split-val{font-size:22px;font-weight:700;color:#111}
+  .split-meta{font-size:13px;color:#6b7280;margin-top:4px}
+  .split-roas{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600}
+  .ch-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .ch-bar-label{width:100px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;flex-shrink:0}
+  .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .ch-bar-track{flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden}
+  .ch-bar-fill{height:100%;border-radius:4px}
+  .ch-bar-val{width:170px;font-size:12px;color:#374151;text-align:right;flex-shrink:0}
+  .ch-pct{color:#9ca3af}
+  .tbl-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead th{background:#f9fafb;color:#6b7280;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:10px 12px;text-align:right;border-bottom:2px solid #e5e7eb;white-space:nowrap}
+  thead th:first-child{text-align:left}
+  tbody td{padding:10px 12px;border-bottom:1px solid #f3f4f6;color:#374151;text-align:right;white-space:nowrap}
+  tbody td:first-child{text-align:left;color:#111;font-weight:500}
+  tbody tr:hover td{background:#f9fafb}
+  .sub-row td{background:#fafafa;font-size:12px;color:#6b7280;font-weight:400}
+  .sub-row td:first-child{padding-left:24px;color:#6b7280}
+  .sub-row:hover td{background:#f3f4f6}
+  .total-row td{background:#eff6ff;font-weight:700;color:#1d4ed8;border-top:2px solid #dbeafe;border-bottom:none}
+  .total-row:hover td{background:#dbeafe}
+  .badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:12px;font-weight:600}
+  .bg{background:#dcfce7;color:#166534}.by{background:#fef9c3;color:#854d0e}.br{background:#fee2e2;color:#991b1b}
+  .muted{color:#9ca3af}
+  .ch-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+  .ch-email{background:#dbeafe;color:#1d4ed8}.ch-whatsapp{background:#dcfce7;color:#15803d}
+  .ch-sms{background:#fef3c7;color:#92400e}.ch-apppush{background:#ede9fe;color:#6d28d9}.ch-webpush{background:#cffafe;color:#0e7490}
+  .day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;margin-bottom:8px}
+  .day-card{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:14px;cursor:pointer;transition:all .15s}
+  .day-card:hover{border-color:#93c5fd;background:#f0f9ff}.day-card.active{border-color:#2563eb;background:#eff6ff}
+  .day-date{font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px}
+  .day-rev{font-size:18px;font-weight:700;color:#111;margin:4px 0}
+  .day-meta{font-size:11px;color:#9ca3af}.day-roas{font-size:12px;font-weight:600;margin-top:6px}
+  .detail-header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;width:100%}
+  .detail-title{font-size:14px;font-weight:700;color:#111;flex-shrink:0}
+  .ch-filter-btns,.ch-filter-wrap{display:flex;gap:6px;flex-wrap:wrap}
+  .ch-btn{padding:4px 12px;border-radius:20px;border:1px solid #e5e7eb;background:#fff;font-size:12px;font-weight:500;color:#6b7280;cursor:pointer}
+  .ch-btn:hover{background:#f3f4f6}.ch-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+  .flow-name{max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:400}
+  .flows-search{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .search-input{flex:1;max-width:320px;padding:8px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;outline:none}
+  .search-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+  @media(max-width:768px){.kpi-grid{grid-template-columns:1fr 1fr}.split-grid{grid-template-columns:1fr}}</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <div class="header-logo">Nobero CRM</div>
+    <div class="header-sub">April 2026 &middot; Month-to-Date</div>
+  </div>
+  <div class="header-badge">Data as of 12 Apr 2026</div>
+</div>
+<nav class="nav">
+  <div class="nav-tab active" onclick="showTab('summary',this)">Summary</div>
+  <div class="nav-tab" onclick="showTab('channel',this)">Channel Performance</div>
+  <div class="nav-tab" onclick="showTab('broadcast',this)">Broadcast Analysis</div>
+  <div class="nav-tab" onclick="showTab('flows',this)">Flows Performance</div>
+</nav>
+<div class="content">
+
+<!-- SUMMARY TAB -->
+<div id="tab-summary" class="tab-pane active">
+  <div class="kpi-grid">
+    <div class="kpi-card accent">
+      <div class="kpi-label">Total CRM Revenue</div>
+      <div class="kpi-val">&#8377;9,150,419</div>
+      <div class="kpi-sub">All channels &middot; MTD</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Total Variable Spend</div>
+      <div class="kpi-val">&#8377;318,378</div>
+      <div class="kpi-sub">WA + SMS only</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">ROAS (excl. tool)</div>
+      <div class="kpi-val">28.7x</div>
+      <div class="kpi-sub">Revenue &divide; WA+SMS spend</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">ROAS (incl. tool)</div>
+      <div class="kpi-val">11.2x</div>
+      <div class="kpi-sub">Revenue &divide; (spend + &#8377;5L tool)</div>
+    </div>
+  </div>
+  <div class="split-grid">
+    <div class="split-card">
+      <div class="split-label">Broadcast Campaigns</div>
+      <div class="split-val">&#8377;3,626,341</div>
+      <div class="split-meta">Spend: &#8377;75,221 &middot; 73 campaigns</div>
+      <span class="split-roas" style="background:#dcfce7;color:#166534">48.2x ROAS</span>
+    </div>
+    <div class="split-card">
+      <div class="split-label">Flows (Automations)</div>
+      <div class="split-val">&#8377;5,524,077</div>
+      <div class="split-meta">Spend: &#8377;243,157 &middot; 100 flows</div>
+      <span class="split-roas" style="background:#dcfce7;color:#166534">22.7x ROAS</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title">Revenue by Channel</div></div>
+    <div class="card-body">
+    <div class="ch-bar-row">
+      <div class="ch-bar-label"><span class="dot" style="background:#22c55e"></span>WhatsApp</div>
+      <div class="ch-bar-track"><div class="ch-bar-fill" style="width:20.9%;background:#22c55e"></div></div>
+      <div class="ch-bar-val">&#8377;1,911,190 <span class="ch-pct">(20.9%)</span></div>
+    </div>
+    <div class="ch-bar-row">
+      <div class="ch-bar-label"><span class="dot" style="background:#3b82f6"></span>Email</div>
+      <div class="ch-bar-track"><div class="ch-bar-fill" style="width:71.2%;background:#3b82f6"></div></div>
+      <div class="ch-bar-val">&#8377;6,512,900 <span class="ch-pct">(71.2%)</span></div>
+    </div>
+    <div class="ch-bar-row">
+      <div class="ch-bar-label"><span class="dot" style="background:#f59e0b"></span>SMS</div>
+      <div class="ch-bar-track"><div class="ch-bar-fill" style="width:4.6%;background:#f59e0b"></div></div>
+      <div class="ch-bar-val">&#8377;418,827 <span class="ch-pct">(4.6%)</span></div>
+    </div>
+    <div class="ch-bar-row">
+      <div class="ch-bar-label"><span class="dot" style="background:#8b5cf6"></span>AppPush</div>
+      <div class="ch-bar-track"><div class="ch-bar-fill" style="width:3.1%;background:#8b5cf6"></div></div>
+      <div class="ch-bar-val">&#8377;284,705 <span class="ch-pct">(3.1%)</span></div>
+    </div>
+    <div class="ch-bar-row">
+      <div class="ch-bar-label"><span class="dot" style="background:#06b6d4"></span>WebPush</div>
+      <div class="ch-bar-track"><div class="ch-bar-fill" style="width:0.2%;background:#06b6d4"></div></div>
+      <div class="ch-bar-val">&#8377;22,796 <span class="ch-pct">(0.2%)</span></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHANNEL PERFORMANCE TAB -->
+<div id="tab-channel" class="tab-pane">
+  <div class="card">
+    <div class="card-header"><div class="card-title">Channel Performance — MTD</div></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th style="text-align:left">Channel</th><th>Sent</th><th>Delivered</th>
+          <th>Del%</th><th>Open%</th><th>CTR%</th><th>Clicks</th>
+          <th>Spend</th><th>Revenue</th><th>ROAS</th>
+        </tr></thead>
+        <tbody><tr>
+  <td><span class="dot" style="background:#3b82f6;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span><strong>Email</strong></td>
+  <td>4,442,751</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>11,279</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;6,512,900</td><td><span class="muted">—</span></td>
+</tr>
+<tr class="sub-row"><td style="padding-left:24px">Campaigns</td>
+  <td>3,970,765</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>9,359</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;3,161,984</td><td><span class="muted">—</span></td>
+</tr>
+<tr class="sub-row"><td style="padding-left:24px">Flows</td>
+  <td>471,986</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>1,920</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;3,350,916</td><td><span class="muted">—</span></td>
+</tr><tr>
+  <td><span class="dot" style="background:#22c55e;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span><strong>WhatsApp</strong></td>
+  <td>565,424</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>18,429</td>
+  <td>&#8377;227,666</td>
+  <td>&#8377;1,911,190</td><td><span class="badge bg">8.4x</span></td>
+</tr>
+<tr class="sub-row"><td style="padding-left:24px">Campaigns</td>
+  <td>80,371</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>2,158</td>
+  <td>&#8377;37,612</td>
+  <td>&#8377;87,034</td><td><span class="badge by">2.3x</span></td>
+</tr>
+<tr class="sub-row"><td style="padding-left:24px">Flows</td>
+  <td>485,053</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>16,271</td>
+  <td>&#8377;190,055</td>
+  <td>&#8377;1,824,157</td><td><span class="badge bg">9.6x</span></td>
+</tr><tr>
+  <td><span class="dot" style="background:#f59e0b;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span><strong>SMS</strong></td>
+  <td>954,859</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>8,622</td>
+  <td>&#8377;90,712</td>
+  <td>&#8377;418,827</td><td><span class="badge bg">4.6x</span></td>
+</tr>
+<tr class="sub-row"><td style="padding-left:24px">Campaigns</td>
+  <td>395,883</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>838</td>
+  <td>&#8377;37,609</td>
+  <td>&#8377;91,305</td><td><span class="badge by">2.4x</span></td>
+</tr>
+<tr class="sub-row"><td style="padding-left:24px">Flows</td>
+  <td>558,976</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>7,784</td>
+  <td>&#8377;53,103</td>
+  <td>&#8377;327,522</td><td><span class="badge bg">6.2x</span></td>
+</tr><tr>
+  <td><span class="dot" style="background:#8b5cf6;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span><strong>AppPush</strong></td>
+  <td>4,330,837</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>18,807</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;284,705</td><td><span class="muted">—</span></td>
+</tr>
+<tr class="sub-row"><td style="padding-left:24px">Campaigns</td>
+  <td>4,086,721</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>15,308</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;270,817</td><td><span class="muted">—</span></td>
+</tr>
+<tr class="sub-row"><td style="padding-left:24px">Flows</td>
+  <td>244,116</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>3,499</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;13,888</td><td><span class="muted">—</span></td>
+</tr><tr>
+  <td><span class="dot" style="background:#06b6d4;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px"></span><strong>WebPush</strong></td>
+  <td>857,098</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>1,926</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;22,796</td><td><span class="muted">—</span></td>
+</tr>
+<tr class="sub-row"><td style="padding-left:24px">Campaigns</td>
+  <td>846,733</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>1,858</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;15,202</td><td><span class="muted">—</span></td>
+</tr>
+<tr class="sub-row"><td style="padding-left:24px">Flows</td>
+  <td>10,365</td><td>—</td><td>—</td><td>—</td><td>—</td>
+  <td>68</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;7,594</td><td><span class="muted">—</span></td>
+</tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- BROADCAST ANALYSIS TAB -->
+<div id="tab-broadcast" class="tab-pane">
+  <div class="card">
+    <div class="card-header"><div class="card-title">Broadcast Campaigns — Select a Day</div></div>
+    <div class="card-body">
+      <div class="day-grid" id="day-grid"></div>
+    </div>
+  </div>
+  <div class="card" id="detail-card" style="display:none">
+    <div class="card-header" id="detail-header">
+      <div class="detail-header">
+        <div class="detail-title" id="detail-title"></div>
+        <div class="ch-filter-wrap">
+          <div class="ch-filter-btns" id="ch-filter-btns"></div>
+        </div>
+      </div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th style="text-align:left">Campaign</th>
+          <th style="text-align:left">Channel</th>
+          <th style="text-align:left">Sent Time</th>
+          <th>Sent</th><th>Del%</th><th>Open%</th><th>Read%</th>
+          <th>CTR%</th><th>Clicks</th><th>Spend</th><th>Revenue</th><th>ROAS</th>
+        </tr></thead>
+        <tbody id="detail-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- FLOWS PERFORMANCE TAB -->
+<div id="tab-flows" class="tab-pane">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Flows Performance — MTD</div>
+      <div class="flows-search">
+        <select id="flow-ch-select" onchange="setFlowCh(this.value,this)" style="padding:6px 10px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;outline:none">
+          <option>All</option><option>Email</option><option>WhatsApp</option>
+          <option>SMS</option><option>AppPush</option><option>WebPush</option>
+        </select>
+        <input type="text" id="flow-search" class="search-input" placeholder="Search flows..." oninput="filterFlows()">
+      </div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th style="text-align:left">Flow Name</th>
+          <th style="text-align:left">Channel</th>
+          <th>Sent</th><th>Delivered</th><th>Clicks</th>
+          <th>Spend</th><th>Revenue</th><th>ROAS</th>
+        </tr></thead>
+        <tbody id="flows-body"><tr>
+  <td class="flow-name" title="Email - Ab Checkout (SOP)">Email - Ab Checkout (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>35,458</td><td>34,052</td>
+  <td>247</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;564,367</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Welcome Journey">Welcome Journey</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>52,717</td><td>50,786</td>
+  <td>181</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;543,167</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Ab Product (SOP)">Email - Ab Product (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>60,070</td><td>58,082</td>
+  <td>196</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;471,625</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Ab Cart (SOP)">Email - Ab Cart (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>24,645</td><td>23,853</td>
+  <td>101</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;469,048</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Quick Upsell">Quick Upsell</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>17,574</td><td>12,299</td>
+  <td>2,230</td>
+  <td>&#8377;10,085</td>
+  <td>&#8377;451,956</td>
+  <td><span class="badge bg">44.8x</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Post Purchase Journey (SOP)">Email - Post Purchase Journey (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>116,389</td><td>112,939</td>
+  <td>631</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;434,446</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Quick Upsell">Quick Upsell</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>18,818</td><td>18,036</td>
+  <td>210</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;324,832</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Ab Checkout (SOP)">WA - Ab Checkout (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>20,448</td><td>9,752</td>
+  <td>1,141</td>
+  <td>&#8377;7,997</td>
+  <td>&#8377;280,427</td>
+  <td><span class="badge bg">35.1x</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Ab Product (SOP)">WA - Ab Product (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>56,663</td><td>27,396</td>
+  <td>2,034</td>
+  <td>&#8377;22,465</td>
+  <td>&#8377;247,920</td>
+  <td><span class="badge bg">11.0x</span></td>
+</tr><tr>
+  <td class="flow-name" title="Post Delivery Credit - App Install">Post Delivery Credit - App Install</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>17,460</td><td>16,995</td>
+  <td>162</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;238,004</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Welcome Journey">Welcome Journey</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>71,267</td><td>33,969</td>
+  <td>1,381</td>
+  <td>&#8377;27,855</td>
+  <td>&#8377;190,502</td>
+  <td><span class="badge bg">6.8x</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Post Purchase Journey (SOP)">WA - Post Purchase Journey (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>59,933</td><td>35,727</td>
+  <td>1,571</td>
+  <td>&#8377;29,296</td>
+  <td>&#8377;180,566</td>
+  <td><span class="badge bg">6.2x</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Ab Cart (SOP)">WA - Ab Cart (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>31,357</td><td>15,284</td>
+  <td>873</td>
+  <td>&#8377;12,533</td>
+  <td>&#8377;179,553</td>
+  <td><span class="badge bg">14.3x</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Abandon Collection (SOP)">WA - Abandon Collection (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>52,292</td><td>25,377</td>
+  <td>1,034</td>
+  <td>&#8377;20,809</td>
+  <td>&#8377;125,179</td>
+  <td><span class="badge bg">6.0x</span></td>
+</tr><tr>
+  <td class="flow-name" title="Post Delivery Credit - App Install">Post Delivery Credit - App Install</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>18,342</td><td>10,384</td>
+  <td>743</td>
+  <td>&#8377;1,194</td>
+  <td>&#8377;109,322</td>
+  <td><span class="badge bg">91.5x</span></td>
+</tr><tr>
+  <td class="flow-name" title="Post Purchase Feedback">Post Purchase Feedback</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>9,802</td><td>9,461</td>
+  <td>56</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;100,457</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Sunset Flow">Email - Sunset Flow</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>71,807</td><td>68,981</td>
+  <td>32</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;79,189</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="IndiGo Sign up">IndiGo Sign up</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>11,135</td><td>10,755</td>
+  <td>15</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;73,755</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Post Purchase Journey (SOP)">SMS - Post Purchase Journey (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>76,497</td><td>73,363</td>
+  <td>628</td>
+  <td>&#8377;7,267</td>
+  <td>&#8377;55,579</td>
+  <td><span class="badge bg">7.6x</span></td>
+</tr><tr>
+  <td class="flow-name" title="Welcome Journey">Welcome Journey</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>97,028</td><td>64,957</td>
+  <td>335</td>
+  <td>&#8377;9,218</td>
+  <td>&#8377;54,752</td>
+  <td><span class="badge bg">5.9x</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Ab Checkout (SOP)">SMS - Ab Checkout (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>19,384</td><td>17,419</td>
+  <td>270</td>
+  <td>&#8377;1,841</td>
+  <td>&#8377;46,272</td>
+  <td><span class="badge bg">25.1x</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Ab Product (SOP)">SMS - Ab Product (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>55,666</td><td>51,484</td>
+  <td>325</td>
+  <td>&#8377;5,288</td>
+  <td>&#8377;35,590</td>
+  <td><span class="badge bg">6.7x</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Ab Cart (SOP)">SMS - Ab Cart (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>27,778</td><td>19,264</td>
+  <td>108</td>
+  <td>&#8377;2,639</td>
+  <td>&#8377;33,949</td>
+  <td><span class="badge bg">12.9x</span></td>
+</tr><tr>
+  <td class="flow-name" title="Quick Upsell">Quick Upsell</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>18,358</td><td>6,778</td>
+  <td>151</td>
+  <td>&#8377;1,744</td>
+  <td>&#8377;31,231</td>
+  <td><span class="badge bg">17.9x</span></td>
+</tr><tr>
+  <td class="flow-name" title="Post Purchase Feedback">Post Purchase Feedback</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>12,057</td><td>7,286</td>
+  <td>417</td>
+  <td>&#8377;5,975</td>
+  <td>&#8377;30,081</td>
+  <td><span class="badge bg">5.0x</span></td>
+</tr><tr>
+  <td class="flow-name" title="Post Delivery Credit - App Install">Post Delivery Credit - App Install</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>19,795</td><td>11,082</td>
+  <td>131</td>
+  <td>&#8377;1,881</td>
+  <td>&#8377;25,205</td>
+  <td><span class="badge bg">13.4x</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Abandon Collection (SOP)">SMS - Abandon Collection (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>33,240</td><td>17,315</td>
+  <td>126</td>
+  <td>&#8377;3,158</td>
+  <td>&#8377;22,442</td>
+  <td><span class="badge bg">7.1x</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Install - No Purchase (15 Days)">App Install - No Purchase (15 Days)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>12,346</td><td>12,003</td>
+  <td>25</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;19,531</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="100D Journey">100D Journey</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>32,949</td><td>31,802</td>
+  <td>25</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;16,167</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="100D Journey">100D Journey</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>34,654</td><td>19,389</td>
+  <td>209</td>
+  <td>&#8377;15,899</td>
+  <td>&#8377;13,548</td>
+  <td><span class="badge br">0.9x</span></td>
+</tr><tr>
+  <td class="flow-name" title="Welcome Journey">Welcome Journey</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>51,885</td><td>51,885</td>
+  <td>464</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;12,840</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Post Purchase Feedback">Post Purchase Feedback</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>12,396</td><td>11,554</td>
+  <td>176</td>
+  <td>&#8377;1,178</td>
+  <td>&#8377;11,264</td>
+  <td><span class="badge bg">9.6x</span></td>
+</tr><tr>
+  <td class="flow-name" title="Visited Website">Visited Website</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>1,084</td><td>1,042</td>
+  <td>2</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;10,895</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Install - No Purchase (15 Days)">App Install - No Purchase (15 Days)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>20,833</td><td>12,259</td>
+  <td>234</td>
+  <td>&#8377;10,052</td>
+  <td>&#8377;10,440</td>
+  <td><span class="badge by">1.0x</span></td>
+</tr><tr>
+  <td class="flow-name" title="IndiGo Sign up">IndiGo Sign up</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>18,392</td><td>12,738</td>
+  <td>115</td>
+  <td>&#8377;1,747</td>
+  <td>&#8377;7,429</td>
+  <td><span class="badge bg">4.3x</span></td>
+</tr><tr>
+  <td class="flow-name" title="WPush - Ab Checkout (SOP)">WPush - Ab Checkout (SOP)</td>
+  <td><span class="ch-tag ch-webpush">WebPush</span></td>
+  <td>1,016</td><td>1,016</td>
+  <td>9</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;6,595</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="100D Journey">100D Journey</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>36,499</td><td>23,423</td>
+  <td>46</td>
+  <td>&#8377;3,467</td>
+  <td>&#8377;3,808</td>
+  <td><span class="badge by">1.1x</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Visitors - Periodic">App Visitors - Periodic</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>7,562</td><td>4,027</td>
+  <td>81</td>
+  <td>&#8377;3,302</td>
+  <td>&#8377;3,514</td>
+  <td><span class="badge by">1.1x</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Uninstall Flow">App Uninstall Flow</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>5,986</td><td>5,810</td>
+  <td>14</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;3,137</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="All Channel - Order Confirm (SOP)">All Channel - Order Confirm (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;2,297</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Purchase Anniversary">Purchase Anniversary</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>12,666</td><td>7,812</td>
+  <td>96</td>
+  <td>&#8377;6,406</td>
+  <td>&#8377;1,148</td>
+  <td><span class="badge br">0.2x</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Install - No Purchase (15 Days)">App Install - No Purchase (15 Days)</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>16,557</td><td>16,557</td>
+  <td>91</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;1,048</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WPush - Ab Product (SOP)">WPush - Ab Product (SOP)</td>
+  <td><span class="ch-tag ch-webpush">WebPush</span></td>
+  <td>6,495</td><td>6,495</td>
+  <td>36</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;999</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Visited Website">Email - Visited Website</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Abandoned Product">Email - Abandoned Product</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Abandoned Cart">Email - Abandoned Cart</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Welcome">Email - Welcome</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS & Email - Post Purchase Feedback">SMS & Email - Post Purchase Feedback</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Abandoned Checkout GK">Email - Abandoned Checkout GK</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Quick Upsell">Email - Quick Upsell</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - 100D Journey">Email - 100D Journey</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - 100D Journey (SOP)">Email - 100D Journey (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Post Purchase Journey">Email - Post Purchase Journey</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Quick Upsell (SOP)">Email - Quick Upsell (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS & Email - Post Purchase Feedback (SOP)">SMS & Email - Post Purchase Feedback (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Visited Website (SOP)">Email - Visited Website (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Welcome (SOP)">Email - Welcome (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Email - Sunset Flow (SOP)">Email - Sunset Flow (SOP)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="NPS (Promoters) - App Review + App Install">NPS (Promoters) - App Review + App Install</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>170</td><td>165</td>
+  <td>4</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Indigo Chips Credited">Indigo Chips Credited</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>752</td><td>745</td>
+  <td>8</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App-Install Churn (15 Days)">App-Install Churn (15 Days)</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Order Confirmed">Order Confirmed</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>0</td><td>0</td>
+  <td>1</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="IndiGo - Order Confirmed">IndiGo - Order Confirmed</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>112</td><td>111</td>
+  <td>10</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Install - 7 Days">App Install - 7 Days</td>
+  <td><span class="ch-tag ch-email">Email</span></td>
+  <td>286</td><td>272</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Abandoned Product">SMS - Abandoned Product</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Abandoned Cart">SMS - Abandoned Cart</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Abandoned Checkout GK">SMS - Abandoned Checkout GK</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Delay Dispatch">SMS - Delay Dispatch</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Post Purchase Feedback">SMS - Post Purchase Feedback</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS & Email - Post Purchase Feedback">SMS & Email - Post Purchase Feedback</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Order Cancel">SMS - Order Cancel</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Order Shipment">SMS - Order Shipment</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Anniversary">SMS - Anniversary</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Post Purchase Journey">SMS - Post Purchase Journey</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Order Confirm (SOP)">WA - Order Confirm (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA & SMS - Order Confirm (SOP)">WA & SMS - Order Confirm (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="All Channel - Order Confirm (SOP)">All Channel - Order Confirm (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS & WA - Order Shipment (SOP)">SMS & WA - Order Shipment (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Order Cancel (SOP)">SMS - Order Cancel (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS Order Shipment (SOP)">SMS Order Shipment (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS & Email - Post Purchase Feedback (SOP)">SMS & Email - Post Purchase Feedback (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Anniversary (SOP)">SMS - Anniversary (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS - Order Packed (SOP)">SMS - Order Packed (SOP)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="NPS (Promoters) - App Review + App Install">NPS (Promoters) - App Review + App Install</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>210</td><td>42</td>
+  <td>3</td>
+  <td>&#8377;20</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Indigo Chips Credited">Indigo Chips Credited</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>945</td><td>336</td>
+  <td>6</td>
+  <td>&#8377;90</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App-Install Churn (15 Days)">App-Install Churn (15 Days)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Order Confirmed">Order Confirmed</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Order Packed">Order Packed</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>16,332</td><td>16,160</td>
+  <td>968</td>
+  <td>&#8377;1,552</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Delay Dispatch">Delay Dispatch</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>1,093</td><td>1,079</td>
+  <td>0</td>
+  <td>&#8377;104</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Order Cancelled">Order Cancelled</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>1,381</td><td>1,354</td>
+  <td>0</td>
+  <td>&#8377;131</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Partially Fulfilled">Partially Fulfilled</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>4,537</td><td>4,492</td>
+  <td>0</td>
+  <td>&#8377;431</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Order Shipped">Order Shipped</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>30,235</td><td>29,887</td>
+  <td>2,467</td>
+  <td>&#8377;2,872</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Out for Delivery">Out for Delivery</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>30,052</td><td>29,681</td>
+  <td>1,795</td>
+  <td>&#8377;2,855</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Order Delivered">Order Delivered</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>17,060</td><td>16,892</td>
+  <td>0</td>
+  <td>&#8377;1,621</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Delivery Failed">Delivery Failed</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>459</td><td>426</td>
+  <td>11</td>
+  <td>&#8377;44</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Visited Website">Visited Website</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>1,159</td><td>724</td>
+  <td>4</td>
+  <td>&#8377;110</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Purchase Anniversary">Purchase Anniversary</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>14,931</td><td>14,253</td>
+  <td>49</td>
+  <td>&#8377;1,418</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Install - No Purchase (15 Days)">App Install - No Purchase (15 Days)</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>17,876</td><td>7,171</td>
+  <td>32</td>
+  <td>&#8377;1,698</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="IndiGo - Order Confirmed">IndiGo - Order Confirmed</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>116</td><td>30</td>
+  <td>0</td>
+  <td>&#8377;11</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Install - 7 Days">App Install - 7 Days</td>
+  <td><span class="ch-tag ch-sms">SMS</span></td>
+  <td>7,557</td><td>3,129</td>
+  <td>38</td>
+  <td>&#8377;718</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Abandoned Cart">WA - Abandoned Cart</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Abandoned Checkout GK">WA - Abandoned Checkout GK</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Order Confirmation (SOP)">WA - Order Confirmation (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Abandoned Product">WA - Abandoned Product</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Order Confirmation">WA - Order Confirmation</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>26,611</td><td>0</td>
+  <td>1</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Whatsapp - Post Purchase Journey">Whatsapp - Post Purchase Journey</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Order Confirm (SOP)">WA - Order Confirm (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA & SMS - Order Confirm (SOP)">WA & SMS - Order Confirm (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="All Channel - Order Confirm (SOP)">All Channel - Order Confirm (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="SMS & WA - Order Shipment (SOP)">SMS & WA - Order Shipment (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WA - Partial Fulfilled (SOP)">WA - Partial Fulfilled (SOP)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Uninstall Flow">App Uninstall Flow</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>8,204</td><td>4,740</td>
+  <td>152</td>
+  <td>&#8377;3,887</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="NPS (Promoters) - App Review + App Install">NPS (Promoters) - App Review + App Install</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>199</td><td>145</td>
+  <td>14</td>
+  <td>&#8377;17</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App-Install Churn (15 Days)">App-Install Churn (15 Days)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Order Confirmed">Order Confirmed</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>0</td><td>0</td>
+  <td>3</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Order Packed">Order Packed</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>15,570</td><td>14,811</td>
+  <td>2,696</td>
+  <td>&#8377;1,703</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Partially Fulfilled">Partially Fulfilled</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>4,206</td><td>4,043</td>
+  <td>883</td>
+  <td>&#8377;3,315</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Duplicate - Order Confirmation - EDD Test (Internal)">Duplicate - Order Confirmation - EDD Test (Internal)</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>4</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Install - 7 Days">App Install - 7 Days</td>
+  <td><span class="ch-tag ch-whatsapp">WhatsApp</span></td>
+  <td>14,611</td><td>8,860</td>
+  <td>478</td>
+  <td>&#8377;7,265</td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WPush - Abandoned Checkout">WPush - Abandoned Checkout</td>
+  <td><span class="ch-tag ch-webpush">WebPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WPush - Abandoned Cart">WPush - Abandoned Cart</td>
+  <td><span class="ch-tag ch-webpush">WebPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WPush - Abandoned Product">WPush - Abandoned Product</td>
+  <td><span class="ch-tag ch-webpush">WebPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WPush - Post Purchase">WPush - Post Purchase</td>
+  <td><span class="ch-tag ch-webpush">WebPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WPush - Abandoned Checkout GK">WPush - Abandoned Checkout GK</td>
+  <td><span class="ch-tag ch-webpush">WebPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Abandoned Cart">AppPush - Abandoned Cart</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Abandoned Product">AppPush - Abandoned Product</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WPush - Post Purchase Journey">WPush - Post Purchase Journey</td>
+  <td><span class="ch-tag ch-webpush">WebPush</span></td>
+  <td>1,222</td><td>1,222</td>
+  <td>10</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Abandoned Checkout GK">AppPush - Abandoned Checkout GK</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Post Purchase Journey">AppPush - Post Purchase Journey</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>2,344</td><td>2,344</td>
+  <td>27</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Ab Product (AOP)">AppPush - Ab Product (AOP)</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>58,450</td><td>58,450</td>
+  <td>513</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="WPush - Ab Cart (SOP)">WPush - Ab Cart (SOP)</td>
+  <td><span class="ch-tag ch-webpush">WebPush</span></td>
+  <td>1,632</td><td>1,632</td>
+  <td>13</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Ab Cart (AOP)">AppPush - Ab Cart (AOP)</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>21,437</td><td>21,437</td>
+  <td>264</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Ab Checkout (SOP)">AppPush - Ab Checkout (SOP)</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>20,613</td><td>20,613</td>
+  <td>299</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Shipped (SOP)">AppPush - Shipped (SOP)</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>0</td><td>0</td>
+  <td>3</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Delivery Failed (SOP)">AppPush - Delivery Failed (SOP)</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Delivered">AppPush - Delivered</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="AppPush - Out for Delivery (SOP)">AppPush - Out for Delivery (SOP)</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>0</td><td>0</td>
+  <td>1</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="NPS (Promoters) - App Review + App Install">NPS (Promoters) - App Review + App Install</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>79</td><td>79</td>
+  <td>4</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App-Install Churn (15 Days)">App-Install Churn (15 Days)</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>0</td><td>0</td>
+  <td>0</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Order Shipped">Order Shipped</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>10,056</td><td>10,056</td>
+  <td>477</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Out for Delivery">Out for Delivery</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>10,315</td><td>10,315</td>
+  <td>419</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Order Delivered">Order Delivered</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>6,108</td><td>6,108</td>
+  <td>131</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="Delivery Failed">Delivery Failed</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>141</td><td>141</td>
+  <td>7</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr><tr>
+  <td class="flow-name" title="App Install - 7 Days">App Install - 7 Days</td>
+  <td><span class="ch-tag ch-apppush">AppPush</span></td>
+  <td>46,131</td><td>46,131</td>
+  <td>799</td>
+  <td><span class="muted">Free</span></td>
+  <td>&#8377;0</td>
+  <td><span class="muted">—</span></td>
+</tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+<script>
+const CH_TAGS={'Email':'ch-email','WhatsApp':'ch-whatsapp','SMS':'ch-sms','AppPush':'ch-apppush','WebPush':'ch-webpush'};
+function showTab(id,el){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+  if(id==='broadcast'&&!dayGridBuilt) buildDayGrid();
+}
+function fmtINR(v){return '&#8377;'+v.toLocaleString('en-IN',{maximumFractionDigits:0});}
+function roasBadge(r){
+  if(r===null||r===undefined) return '<span class="muted">—</span>';
+  const cls=r>=3?'bg':r>=1?'by':'br';
+  return '<span class="badge '+cls+'">'+r.toFixed(1)+'x</span>';
+}
+const D={campaigns:[
+    {date:'2026-04-01',channel:'Email',name:'E - April Fool - Eng 120D',sent_time:'14:56',sent:727977,del_pct:98.08,open_pct:48.26,read_pct:null,clicks:2024,ctr:0.28,revenue:464088.51,cost:0,roas:null},
+    {date:'2026-04-03',channel:'Email',name:"E - Friday=AppDay - Eng 120D - 03rd Apr'26",sent_time:'09:00',sent:728934,del_pct:98.09,open_pct:47.56,read_pct:null,clicks:1801,ctr:0.25,revenue:795146.51,cost:0,roas:null},
+    {date:'2026-04-06',channel:'Email',name:'E - IPL - Eng 120D',sent_time:'17:38',sent:728006,del_pct:98.08,open_pct:46.44,read_pct:null,clicks:1497,ctr:0.21,revenue:476101.93,cost:0,roas:null},
+    {date:'2026-04-08',channel:'Email',name:'E - UPF Jacket - Eng Buyers 180D',sent_time:'11:26',sent:379564,del_pct:98.13,open_pct:36.24,read_pct:null,clicks:1243,ctr:0.33,revenue:939322.94,cost:0,roas:null},
+    {date:'2026-04-08',channel:'Email',name:'E - UPF Jacket - Eng NonBuyers 180D',sent_time:'11:33',sent:522706,del_pct:97.85,open_pct:46.43,read_pct:null,clicks:1051,ctr:0.21,revenue:212163.83,cost:0,roas:null},
+    {date:'2026-04-10',channel:'Email',name:"E - Friday=AppDay - App Users - 10th Apr'26",sent_time:'08:00',sent:137262,del_pct:96.59,open_pct:10.97,read_pct:null,clicks:134,ctr:0.1,revenue:65670.77,cost:0,roas:null},
+    {date:'2026-04-11',channel:'Email',name:'E - Pet Day - Eng 120D',sent_time:'09:00',sent:725831,del_pct:98.1,open_pct:34.21,read_pct:null,clicks:1609,ctr:0.23,revenue:209489.45,cost:0,roas:null},
+    {date:'2026-04-12',channel:'Email',name:'E - Travel Tee - Eng Buyers 120D',sent_time:'09:00',sent:20485,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-12',channel:'Email',name:'E - Travel Tee - Eng NonBuyers 120D',sent_time:'09:30',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-03',channel:'SMS',name:'S - Friday=Appday - App User & Click (120D)',sent_time:'16:00',sent:23752,del_pct:80.04,open_pct:null,read_pct:null,clicks:92,ctr:0.48,revenue:11788.3,cost:2256.44,roas:5.22},
+    {date:'2026-04-03',channel:'SMS',name:'S - Friday=Appday - App User & EA (120D)',sent_time:'16:20',sent:53917,del_pct:64.42,open_pct:null,read_pct:null,clicks:63,ctr:0.18,revenue:9944.85,cost:5122.11,roas:1.94},
+    {date:'2026-04-03',channel:'SMS',name:'S - Friday=Appday - ATC/Checkout 30D',sent_time:'16:40',sent:95482,del_pct:66.14,open_pct:null,read_pct:null,clicks:272,ctr:0.43,revenue:29950.15,cost:9070.79,roas:3.3},
+    {date:'2026-04-10',channel:'SMS',name:'S - Friday=Appday - App User & Click (120D)',sent_time:'17:00',sent:23967,del_pct:76.5,open_pct:null,read_pct:null,clicks:93,ctr:0.51,revenue:9059.04,cost:2276.87,roas:3.98},
+    {date:'2026-04-10',channel:'SMS',name:'S - Friday=Appday - App User & EA (120D)',sent_time:'17:20',sent:55400,del_pct:61.98,open_pct:null,read_pct:null,clicks:46,ctr:0.13,revenue:4900.04,cost:5263.0,roas:0.93},
+    {date:'2026-04-10',channel:'SMS',name:'S - Friday=Appday - ATC/Checkout 30D',sent_time:'17:40',sent:98096,del_pct:63.81,open_pct:null,read_pct:null,clicks:272,ctr:0.43,revenue:25662.5,cost:9319.12,roas:2.75},
+    {date:'2026-04-11',channel:'SMS',name:'SMS - Mum Store - 20km',sent_time:'12:00',sent:45269,del_pct:63.08,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:4300.56,roas:null},
+    {date:'2026-04-03',channel:'WhatsApp',name:"W - Friday=AppDay - App Users + Click 2X 60D - 03th Apr'26",sent_time:'07:00',sent:13131,del_pct:64.13,open_pct:null,read_pct:63.98,clicks:450,ctr:5.34,revenue:22531.37,cost:6905.22,roas:3.26},
+    {date:'2026-04-03',channel:'WhatsApp',name:"W - Friday=AppDay - Checkout 3X 30D - 03th Apr'26",sent_time:'07:30',sent:18544,del_pct:53.1,open_pct:null,read_pct:60.75,clicks:395,ctr:4.01,revenue:21071.77,cost:8074.54,roas:2.61},
+    {date:'2026-04-10',channel:'WhatsApp',name:"W - Friday=AppDay - App Users + Click 2X 60D - 03th Apr'26",sent_time:'07:00',sent:12554,del_pct:67.29,open_pct:null,read_pct:63.52,clicks:576,ctr:6.82,revenue:27281.53,cost:6927.36,roas:3.94},
+    {date:'2026-04-10',channel:'WhatsApp',name:"W - Friday=AppDay - App Users + Click 2X 60D - 03th Apr'26",sent_time:'07:30',sent:19790,del_pct:50.56,open_pct:null,read_pct:66.04,clicks:471,ctr:4.71,revenue:16149.09,cost:8204.92,roas:1.97},
+    {date:'2026-04-11',channel:'WhatsApp',name:'W - Mum Store - Buyers 20km',sent_time:'10:00',sent:16352,del_pct:55.93,open_pct:null,read_pct:45.9,clicks:266,ctr:2.91,revenue:0.0,cost:7499.72,roas:null},
+    {date:'2026-04-01',channel:'WebPush',name:'WPush - Apr 01 - Bestsellers',sent_time:'19:00',sent:40278,del_pct:100.0,open_pct:null,read_pct:null,clicks:83,ctr:0.21,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-01',channel:'AppPush',name:'AppPush - Apr 01 - Bestsellers',sent_time:'19:00',sent:191442,del_pct:100.0,open_pct:null,read_pct:null,clicks:572,ctr:0.3,revenue:8507.45,cost:0,roas:null},
+    {date:'2026-04-02',channel:'WebPush',name:'WPush - Apr 02 - 21% OFF - Bestsellers',sent_time:'21:10',sent:40047,del_pct:100.0,open_pct:null,read_pct:null,clicks:77,ctr:0.19,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-02',channel:'AppPush',name:'AppPush - Apr 02 - 21% OFF - Bestsellers',sent_time:'21:10',sent:189766,del_pct:100.0,open_pct:null,read_pct:null,clicks:724,ctr:0.38,revenue:5393.45,cost:0,roas:null},
+    {date:'2026-04-03',channel:'WebPush',name:'WPush -  Apr 03 - Friday=AppDay - Live',sent_time:'11:00',sent:40423,del_pct:100.0,open_pct:null,read_pct:null,clicks:78,ctr:0.19,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-03',channel:'AppPush',name:'AppPush - Apr 03 - Friday=AppDay - Live',sent_time:'11:00',sent:194855,del_pct:100.0,open_pct:null,read_pct:null,clicks:607,ctr:0.31,revenue:11490.0,cost:0,roas:null},
+    {date:'2026-04-03',channel:'WebPush',name:'WPush -  Apr 03 - Friday=AppDay - Favourites',sent_time:'17:00',sent:40429,del_pct:100.0,open_pct:null,read_pct:null,clicks:74,ctr:0.18,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-03',channel:'AppPush',name:'AppPush - Apr 03 - Friday=AppDay - Favourites',sent_time:'17:00',sent:194752,del_pct:100.0,open_pct:null,read_pct:null,clicks:527,ctr:0.27,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-03',channel:'WebPush',name:'WPush -  Apr 03 - Friday=AppDay - Waiting',sent_time:'20:00',sent:40409,del_pct:100.0,open_pct:null,read_pct:null,clicks:96,ctr:0.24,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-03',channel:'AppPush',name:'AppPush - Apr 03 - Friday=AppDay - Waiting',sent_time:'20:00',sent:194489,del_pct:100.0,open_pct:null,read_pct:null,clicks:803,ctr:0.41,revenue:11939.5,cost:0,roas:null},
+    {date:'2026-04-03',channel:'WebPush',name:'WPush -  Apr 03 - Friday=AppDay - Final hours',sent_time:'22:00',sent:40398,del_pct:100.0,open_pct:null,read_pct:null,clicks:92,ctr:0.23,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-03',channel:'AppPush',name:'AppPush - Apr 03 - Friday=AppDay - Final hours',sent_time:'22:00',sent:194466,del_pct:100.0,open_pct:null,read_pct:null,clicks:1085,ctr:0.56,revenue:34171.1,cost:0,roas:null},
+    {date:'2026-04-06',channel:'WebPush',name:'WPush - Apr 06 - B3G15',sent_time:'20:00',sent:40559,del_pct:100.0,open_pct:null,read_pct:null,clicks:109,ctr:0.27,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-06',channel:'AppPush',name:'AppPush - Apr 06 - B3G15',sent_time:'20:00',sent:193927,del_pct:100.0,open_pct:null,read_pct:null,clicks:720,ctr:0.37,revenue:5621.45,cost:0,roas:null},
+    {date:'2026-04-07',channel:'WebPush',name:'WPush - Apr 07 - 150 OFF',sent_time:'20:00',sent:39021,del_pct:100.0,open_pct:null,read_pct:null,clicks:71,ctr:0.18,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-07',channel:'AppPush',name:'AppPush - Apr 07 - 150 OFF',sent_time:'20:00',sent:194666,del_pct:100.0,open_pct:null,read_pct:null,clicks:661,ctr:0.34,revenue:5129.0,cost:0,roas:null},
+    {date:'2026-04-08',channel:'WebPush',name:'WPush - Apr 08 - 3 Tees @ 999 - 01',sent_time:'18:00',sent:40493,del_pct:100.0,open_pct:null,read_pct:null,clicks:127,ctr:0.31,revenue:999.0,cost:0,roas:null},
+    {date:'2026-04-08',channel:'AppPush',name:'AppPush - Apr 08 - 3 Tees @ 999 - 01',sent_time:'18:00',sent:197572,del_pct:100.0,open_pct:null,read_pct:null,clicks:1311,ctr:0.66,revenue:19710.3,cost:0,roas:null},
+    {date:'2026-04-08',channel:'WebPush',name:'WPush - Apr 08 - 3 Tees @ 999 - 02',sent_time:'22:00',sent:40439,del_pct:100.0,open_pct:null,read_pct:null,clicks:123,ctr:0.3,revenue:999.0,cost:0,roas:null},
+    {date:'2026-04-08',channel:'AppPush',name:'AppPush - Apr 08 - 3 Tees @ 999 - 02',sent_time:'22:00',sent:194754,del_pct:100.0,open_pct:null,read_pct:null,clicks:1212,ctr:0.62,revenue:29272.800000000003,cost:0,roas:null},
+    {date:'2026-04-09',channel:'WebPush',name:'WPush - Apr 09 - Joggers @ 300 OFF - 01',sent_time:'17:00',sent:40472,del_pct:100.0,open_pct:null,read_pct:null,clicks:130,ctr:0.32,revenue:3096.0,cost:0,roas:null},
+    {date:'2026-04-09',channel:'AppPush',name:'AppPush - Apr 09 - Joggers @ 300 OFF - 01',sent_time:'17:00',sent:195666,del_pct:100.0,open_pct:null,read_pct:null,clicks:1093,ctr:0.56,revenue:12064.720000000001,cost:0,roas:null},
+    {date:'2026-04-09',channel:'WebPush',name:'WPush - Apr 09 - Joggers @ 300 OFF - 02',sent_time:'22:00',sent:40423,del_pct:100.0,open_pct:null,read_pct:null,clicks:93,ctr:0.23,revenue:1849.0,cost:0,roas:null},
+    {date:'2026-04-09',channel:'AppPush',name:'AppPush - Apr 09 - Joggers @ 300 OFF - 02',sent_time:'22:00',sent:195241,del_pct:100.0,open_pct:null,read_pct:null,clicks:662,ctr:0.34,revenue:14886.76,cost:0,roas:null},
+    {date:'2026-04-10',channel:'WebPush',name:'WPush -  Apr 10 - Friday=AppDay - Midnight',sent_time:'01:00',sent:40462,del_pct:100.0,open_pct:null,read_pct:null,clicks:87,ctr:0.22,revenue:1578.52,cost:0,roas:null},
+    {date:'2026-04-10',channel:'AppPush',name:'AppPush - Apr 10 - Friday=AppDay - Midnight',sent_time:'01:00',sent:195699,del_pct:100.0,open_pct:null,read_pct:null,clicks:658,ctr:0.34,revenue:18878.94,cost:0,roas:null},
+    {date:'2026-04-10',channel:'WebPush',name:'WPush -  Apr 10 - Friday=AppDay - No Questions',sent_time:'13:00',sent:40421,del_pct:100.0,open_pct:null,read_pct:null,clicks:89,ctr:0.22,revenue:886.52,cost:0,roas:null},
+    {date:'2026-04-10',channel:'AppPush',name:'AppPush - Apr 10 - Friday=AppDay - No Questions',sent_time:'13:00',sent:195207,del_pct:100.0,open_pct:null,read_pct:null,clicks:597,ctr:0.31,revenue:22815.38,cost:0,roas:null},
+    {date:'2026-04-10',channel:'WebPush',name:'WPush -  Apr 10 - Friday=AppDay - Adding',sent_time:'16:00',sent:40389,del_pct:100.0,open_pct:null,read_pct:null,clicks:57,ctr:0.14,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-10',channel:'AppPush',name:'AppPush - Apr 10 - Friday=AppDay - Adding',sent_time:'16:00',sent:195158,del_pct:100.0,open_pct:null,read_pct:null,clicks:546,ctr:0.28,revenue:6491.44,cost:0,roas:null},
+    {date:'2026-04-10',channel:'WebPush',name:'WPush -  Apr 10 - Friday=AppDay - No Conditions',sent_time:'19:00',sent:40388,del_pct:100.0,open_pct:null,read_pct:null,clicks:72,ctr:0.18,revenue:2597.0,cost:0,roas:null},
+    {date:'2026-04-10',channel:'AppPush',name:'AppPush - Apr 10 - Friday=AppDay - No Conditions',sent_time:'19:00',sent:194915,del_pct:100.0,open_pct:null,read_pct:null,clicks:416,ctr:0.21,revenue:7575.08,cost:0,roas:null},
+    {date:'2026-04-10',channel:'WebPush',name:'WPush -  Apr 10 - Friday=AppDay - Dont Miss',sent_time:'21:00',sent:40370,del_pct:100.0,open_pct:null,read_pct:null,clicks:82,ctr:0.2,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-10',channel:'AppPush',name:'AppPush - Apr 10 - Friday=AppDay - Dont Miss',sent_time:'21:00',sent:194652,del_pct:100.0,open_pct:null,read_pct:null,clicks:435,ctr:0.22,revenue:8211.99,cost:0,roas:null},
+    {date:'2026-04-10',channel:'WebPush',name:'WPush -  Apr 10 - Friday=AppDay - Few Hours',sent_time:'23:00',sent:40325,del_pct:100.0,open_pct:null,read_pct:null,clicks:70,ctr:0.17,revenue:899.0,cost:0,roas:null},
+    {date:'2026-04-10',channel:'AppPush',name:'AppPush - Apr 10 - Friday=AppDay - Few Hours',sent_time:'23:00',sent:194518,del_pct:100.0,open_pct:null,read_pct:null,clicks:505,ctr:0.26,revenue:16315.33,cost:0,roas:null},
+    {date:'2026-04-11',channel:'WebPush',name:'WPush - Apr 11 - 3 Tees @ 999',sent_time:'17:00',sent:40324,del_pct:100.0,open_pct:null,read_pct:null,clicks:131,ctr:0.32,revenue:999.0,cost:0,roas:null},
+    {date:'2026-04-11',channel:'AppPush',name:'AppPush - Apr 11 - 3 Tees @ 999',sent_time:'17:00',sent:195039,del_pct:100.0,open_pct:null,read_pct:null,clicks:999,ctr:0.51,revenue:21677.0,cost:0,roas:null},
+    {date:'2026-04-11',channel:'WebPush',name:'WPush - Apr 11 - 500 Unlocked',sent_time:'21:00',sent:40321,del_pct:100.0,open_pct:null,read_pct:null,clicks:57,ctr:0.14,revenue:1299.0,cost:0,roas:null},
+    {date:'2026-04-11',channel:'AppPush',name:'AppPush - Apr 11 - 500 Unlocked',sent_time:'21:00',sent:194897,del_pct:100.0,open_pct:null,read_pct:null,clicks:574,ctr:0.29,revenue:999.0,cost:0,roas:null},
+    {date:'2026-04-11',channel:'WebPush',name:'WPush - Apr 11 - 26% OFF',sent_time:'23:00',sent:40342,del_pct:100.0,open_pct:null,read_pct:null,clicks:60,ctr:0.15,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-11',channel:'AppPush',name:'AppPush - Apr 11 - 26% OFF',sent_time:'23:00',sent:195040,del_pct:100.0,open_pct:null,read_pct:null,clicks:601,ctr:0.31,revenue:9665.9,cost:0,roas:null},
+    {date:'2026-04-12',channel:'WebPush',name:'WPush - Apr 12 - 21% OFF Live',sent_time:'11:00',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-12',channel:'AppPush',name:'AppPush - Apr 12 - 21% OFF Live',sent_time:'11:00',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-12',channel:'WebPush',name:'WPush - Apr 12 - Free Product',sent_time:'15:00',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-12',channel:'AppPush',name:'AppPush - Apr 12 - Free Product',sent_time:'15:00',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-12',channel:'WebPush',name:'WPush - Apr 12 - B2G1',sent_time:'18:00',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-12',channel:'AppPush',name:'AppPush - Apr 12 - B2G1',sent_time:'18:00',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-12',channel:'WebPush',name:'WPush - Apr 12 - 500 OFF',sent_time:'21:00',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-12',channel:'AppPush',name:'AppPush - Apr 12 - 500 OFF',sent_time:'21:00',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-12',channel:'WebPush',name:'WPush - Apr 12 - 21% OFF',sent_time:'23:00',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null},
+    {date:'2026-04-12',channel:'AppPush',name:'AppPush - Apr 12 - 21% OFF',sent_time:'23:00',sent:0,del_pct:0.0,open_pct:null,read_pct:null,clicks:0,ctr:0.0,revenue:0.0,cost:0,roas:null}
+]};
+const FLOWS=[{"name": "Email - Visited Website","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Cart","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Cart","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Cart","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Visited Website","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Visited Website","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Visited Website","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Product","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Cart","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Cart","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Cart","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Checkout GK","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Checkout GK","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Abandoned Checkout GK","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Quick Upsell","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Visited Website","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Quick Upsell (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 1,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 3297.0},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Visited Website (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Ab Product (SOP)","ch": "Email","sent": 18855,"del": 18231,"dr": 96.7,"or": 20.4,"ctr": 0.2,"rr": 0,"clicks": 36,"cost": 0,"rev": 156843.31000000003},
+{"name": "Email - Ab Product (SOP)","ch": "Email","sent": 19765,"del": 19116,"dr": 96.7,"or": 19.2,"ctr": 0.27,"rr": 0,"clicks": 52,"cost": 0,"rev": 87854.85},
+{"name": "Email - Ab Product (SOP)","ch": "Email","sent": 21450,"del": 20735,"dr": 96.7,"or": 20.4,"ctr": 0.52,"rr": 0,"clicks": 108,"cost": 0,"rev": 226926.55000000002},
+{"name": "Email - Ab Cart (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Ab Cart (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Ab Cart (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Ab Cart (SOP)","ch": "Email","sent": 7836,"del": 7600,"dr": 97.0,"or": 19.6,"ctr": 0.28,"rr": 0,"clicks": 21,"cost": 0,"rev": 138394.05},
+{"name": "Email - Ab Cart (SOP)","ch": "Email","sent": 8116,"del": 7844,"dr": 96.6,"or": 17.9,"ctr": 0.46,"rr": 0,"clicks": 36,"cost": 0,"rev": 101067.73999999999},
+{"name": "Email - Ab Cart (SOP)","ch": "Email","sent": 8693,"del": 8409,"dr": 96.7,"or": 19.7,"ctr": 0.52,"rr": 0,"clicks": 44,"cost": 0,"rev": 229585.85000000003},
+{"name": "Email - Ab Checkout (SOP)","ch": "Email","sent": 11127,"del": 10718,"dr": 96.3,"or": 21.8,"ctr": 0.49,"rr": 0,"clicks": 53,"cost": 0,"rev": 115782.83000000002},
+{"name": "Email - Ab Checkout (SOP)","ch": "Email","sent": 11640,"del": 11205,"dr": 96.3,"or": 19.2,"ctr": 0.41,"rr": 0,"clicks": 46,"cost": 0,"rev": 77712.27},
+{"name": "Email - Ab Checkout (SOP)","ch": "Email","sent": 12691,"del": 12129,"dr": 95.6,"or": 23.4,"ctr": 1.22,"rr": 0,"clicks": 148,"cost": 0,"rev": 370871.64999999997},
+{"name": "SMS & Email - Post Purchase Feedback (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "App Uninstall Flow","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Post Delivery Credit - App Install","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "App Uninstall Flow","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 2297.0},
+{"name": "Email - Sunset Flow (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Sunset Flow (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Sunset Flow (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Sunset Flow (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Post Delivery Credit - App Install","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Quick Upsell (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Post Delivery Credit - App Install","ch": "Email","sent": 17460,"del": 16995,"dr": 97.3,"or": 29.3,"ctr": 0.95,"rr": 0,"clicks": 162,"cost": 0,"rev": 238003.72000000003},
+{"name": "NPS (Promoters) - App Review + App Install","ch": "Email","sent": 112,"del": 108,"dr": 96.4,"or": 22.2,"ctr": 1.85,"rr": 0,"clicks": 2,"cost": 0,"rev": 0.0},
+{"name": "NPS (Promoters) - App Review + App Install","ch": "Email","sent": 58,"del": 57,"dr": 98.3,"or": 33.3,"ctr": 3.51,"rr": 0,"clicks": 2,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Welcome (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Quick Upsell (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Indigo Chips Credited","ch": "Email","sent": 752,"del": 745,"dr": 99.1,"or": 36.9,"ctr": 1.07,"rr": 0,"clicks": 8,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - 100D Journey (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Quick Upsell (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 23888,"del": 23205,"dr": 97.1,"or": 20.8,"ctr": 0.43,"rr": 0,"clicks": 99,"cost": 0,"rev": 69983.21},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 22547,"del": 21896,"dr": 97.1,"or": 22.5,"ctr": 0.58,"rr": 0,"clicks": 128,"cost": 0,"rev": 102953.62999999999},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 22516,"del": 21893,"dr": 97.2,"or": 26.4,"ctr": 1.33,"rr": 0,"clicks": 291,"cost": 0,"rev": 128734.24999999999},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 23134,"del": 22469,"dr": 97.1,"or": 19.7,"ctr": 0.28,"rr": 0,"clicks": 63,"cost": 0,"rev": 69320.54999999999},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 12518,"del": 12091,"dr": 96.6,"or": 19.0,"ctr": 0.19,"rr": 0,"clicks": 23,"cost": 0,"rev": 29048.94},
+{"name": "Email - Post Purchase Journey (SOP)","ch": "Email","sent": 11786,"del": 11385,"dr": 96.6,"or": 19.5,"ctr": 0.23,"rr": 0,"clicks": 26,"cost": 0,"rev": 31108.3},
+{"name": "App-Install Churn (15 Days)","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Order Confirmed","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Visited Website","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Quick Upsell","ch": "Email","sent": 18818,"del": 18036,"dr": 95.8,"or": 24.2,"ctr": 1.16,"rr": 0,"clicks": 210,"cost": 0,"rev": 324831.99000000005},
+{"name": "Post Purchase Feedback","ch": "Email","sent": 9802,"del": 9461,"dr": 96.5,"or": 22.2,"ctr": 0.59,"rr": 0,"clicks": 56,"cost": 0,"rev": 100457.31},
+{"name": "100D Journey","ch": "Email","sent": 16917,"del": 16323,"dr": 96.5,"or": 18.4,"ctr": 0.03,"rr": 0,"clicks": 5,"cost": 0,"rev": 6985.719999999999},
+{"name": "100D Journey","ch": "Email","sent": 16032,"del": 15479,"dr": 96.6,"or": 19.3,"ctr": 0.13,"rr": 0,"clicks": 20,"cost": 0,"rev": 9181.1},
+{"name": "App Uninstall Flow","ch": "Email","sent": 5986,"del": 5810,"dr": 97.1,"or": 18.6,"ctr": 0.24,"rr": 0,"clicks": 14,"cost": 0,"rev": 3137.2},
+{"name": "App Install - No Purchase (15 Days)","ch": "Email","sent": 12346,"del": 12003,"dr": 97.2,"or": 20.4,"ctr": 0.21,"rr": 0,"clicks": 25,"cost": 0,"rev": 19530.97},
+{"name": "Email - Sunset Flow","ch": "Email","sent": 23763,"del": 22892,"dr": 96.3,"or": 2.4,"ctr": 0.04,"rr": 0,"clicks": 10,"cost": 0,"rev": 13437.6},
+{"name": "Email - Sunset Flow","ch": "Email","sent": 16286,"del": 15580,"dr": 95.7,"or": 3.2,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 9320.0},
+{"name": "Email - Sunset Flow","ch": "Email","sent": 15872,"del": 15253,"dr": 96.1,"or": 4.0,"ctr": 0.07,"rr": 0,"clicks": 10,"cost": 0,"rev": 19156.8},
+{"name": "Email - Sunset Flow","ch": "Email","sent": 15886,"del": 15256,"dr": 96.0,"or": 3.5,"ctr": 0.08,"rr": 0,"clicks": 12,"cost": 0,"rev": 37274.909999999996},
+{"name": "Order Confirmed","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 1,"cost": 0,"rev": 0.0},
+{"name": "IndiGo - Order Confirmed","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "IndiGo Sign up","ch": "Email","sent": 11135,"del": 10755,"dr": 96.6,"or": 19.9,"ctr": 0.14,"rr": 0,"clicks": 15,"cost": 0,"rev": 73755.2},
+{"name": "IndiGo - Order Confirmed","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "IndiGo - Order Confirmed","ch": "Email","sent": 112,"del": 111,"dr": 99.1,"or": 328.8,"ctr": 9.01,"rr": 0,"clicks": 10,"cost": 0,"rev": 0.0},
+{"name": "Visited Website","ch": "Email","sent": 1084,"del": 1042,"dr": 96.1,"or": 25.0,"ctr": 0.19,"rr": 0,"clicks": 2,"cost": 0,"rev": 10894.650000000001},
+{"name": "Welcome Journey","ch": "Email","sent": 17153,"del": 16623,"dr": 96.9,"or": 20.2,"ctr": 0.34,"rr": 0,"clicks": 56,"cost": 0,"rev": 53327.6},
+{"name": "Welcome Journey","ch": "Email","sent": 16938,"del": 16396,"dr": 96.8,"or": 20.0,"ctr": 0.26,"rr": 0,"clicks": 43,"cost": 0,"rev": 70450.9},
+{"name": "Welcome Journey","ch": "Email","sent": 18626,"del": 17767,"dr": 95.4,"or": 23.7,"ctr": 0.46,"rr": 0,"clicks": 82,"cost": 0,"rev": 419388.58999999997},
+{"name": "App Install - 7 Days","ch": "Email","sent": 276,"del": 265,"dr": 96.0,"or": 7.2,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "Email","sent": 10,"del": 7,"dr": 70.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "Email","sent": 0,"del": 0,"dr": 0.0,"or": 0.0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Delay Dispatch","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Feedback","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Delay Dispatch","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Checkout GK","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Cart","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandoned Product","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Order Cancel","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Order Shipment","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Order Cancel","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Order Shipment","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Anniversary","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Anniversary","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Delay Dispatch","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Order Confirm (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA & SMS - Order Confirm (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandon Collection (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandon Collection (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & WA - Order Shipment (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Order Cancel (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS Order Shipment (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Delay Dispatch","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Anniversary (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Anniversary (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS Order Shipment (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Delay Dispatch","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Order Cancel","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Delay Dispatch","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Product (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Product (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Product (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Cart (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Cart (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Cart (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Cart (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Cart (SOP)","ch": "SMS","sent": 7375,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 700.62,"rev": 0.0},
+{"name": "SMS - Ab Cart (SOP)","ch": "SMS","sent": 6866,"del": 6477,"dr": 94.3,"or": 0,"ctr": 0.39,"rr": 0,"clicks": 25,"cost": 652.27,"rev": 9326.0},
+{"name": "SMS - Ab Cart (SOP)","ch": "SMS","sent": 6438,"del": 6065,"dr": 94.2,"or": 0,"ctr": 0.61,"rr": 0,"clicks": 37,"cost": 611.61,"rev": 8338.45},
+{"name": "SMS - Ab Cart (SOP)","ch": "SMS","sent": 7099,"del": 6722,"dr": 94.7,"or": 0,"ctr": 0.68,"rr": 0,"clicks": 46,"cost": 674.4,"rev": 16284.74},
+{"name": "SMS - Ab Checkout (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Checkout (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Checkout (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Checkout (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Post Delivery Credit - App Install","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Order Packed (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Order Packed (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandon Collection (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandon Collection (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Abandon Collection (SOP)","ch": "SMS","sent": 15341,"del": 7914,"dr": 51.6,"or": 0,"ctr": 0.58,"rr": 0,"clicks": 46,"cost": 1457.39,"rev": 5613.1},
+{"name": "SMS - Abandon Collection (SOP)","ch": "SMS","sent": 17899,"del": 9401,"dr": 52.5,"or": 0,"ctr": 0.85,"rr": 0,"clicks": 80,"cost": 1700.4,"rev": 16829.38},
+{"name": "All Channel - Order Confirm (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & Email - Post Purchase Feedback (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Order Cancel","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Post Delivery Credit - App Install","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Delay Dispatch","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Ab Checkout (SOP)","ch": "SMS","sent": 3430,"del": 3007,"dr": 87.7,"or": 0,"ctr": 0.5,"rr": 0,"clicks": 15,"cost": 325.85,"rev": 2499.0},
+{"name": "SMS - Ab Checkout (SOP)","ch": "SMS","sent": 2354,"del": 2131,"dr": 90.5,"or": 0,"ctr": 0.89,"rr": 0,"clicks": 19,"cost": 223.63,"rev": 0.0},
+{"name": "SMS - Ab Checkout (SOP)","ch": "SMS","sent": 3786,"del": 3447,"dr": 91.0,"or": 0,"ctr": 1.54,"rr": 0,"clicks": 53,"cost": 359.67,"rev": 2947.2},
+{"name": "SMS - Ab Checkout (SOP)","ch": "SMS","sent": 4194,"del": 3827,"dr": 91.2,"or": 0,"ctr": 4.18,"rr": 0,"clicks": 160,"cost": 398.43,"rev": 36404.11},
+{"name": "SMS - Ab Checkout (SOP)","ch": "SMS","sent": 2260,"del": 2039,"dr": 90.2,"or": 0,"ctr": 0.54,"rr": 0,"clicks": 11,"cost": 214.7,"rev": 3423.05},
+{"name": "SMS - Ab Checkout (SOP)","ch": "SMS","sent": 3360,"del": 2968,"dr": 88.3,"or": 0,"ctr": 0.4,"rr": 0,"clicks": 12,"cost": 319.2,"rev": 999.0},
+{"name": "SMS - Ab Product (SOP)","ch": "SMS","sent": 9332,"del": 8575,"dr": 91.9,"or": 0,"ctr": 0.44,"rr": 0,"clicks": 38,"cost": 886.54,"rev": 999.0},
+{"name": "SMS - Ab Product (SOP)","ch": "SMS","sent": 8768,"del": 8130,"dr": 92.7,"or": 0,"ctr": 0.32,"rr": 0,"clicks": 26,"cost": 832.96,"rev": 2397.0},
+{"name": "SMS - Ab Product (SOP)","ch": "SMS","sent": 19574,"del": 18149,"dr": 92.7,"or": 0,"ctr": 1.04,"rr": 0,"clicks": 189,"cost": 1859.53,"rev": 26499.2},
+{"name": "SMS - Ab Product (SOP)","ch": "SMS","sent": 8714,"del": 8059,"dr": 92.5,"or": 0,"ctr": 0.43,"rr": 0,"clicks": 35,"cost": 827.83,"rev": 2498.0},
+{"name": "SMS - Ab Product (SOP)","ch": "SMS","sent": 9278,"del": 8571,"dr": 92.4,"or": 0,"ctr": 0.43,"rr": 0,"clicks": 37,"cost": 881.41,"rev": 3197.0},
+{"name": "Post Delivery Credit - App Install","ch": "SMS","sent": 19795,"del": 11082,"dr": 56.0,"or": 0,"ctr": 1.18,"rr": 0,"clicks": 131,"cost": 1880.53,"rev": 25205.2},
+{"name": "NPS (Promoters) - App Review + App Install","ch": "SMS","sent": 135,"del": 20,"dr": 14.8,"or": 0,"ctr": 5.0,"rr": 0,"clicks": 1,"cost": 12.82,"rev": 0.0},
+{"name": "NPS (Promoters) - App Review + App Install","ch": "SMS","sent": 75,"del": 22,"dr": 29.3,"or": 0,"ctr": 9.09,"rr": 0,"clicks": 2,"cost": 7.12,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Delay Dispatch","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Anniversary (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Anniversary (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 8607,"del": 8211,"dr": 95.4,"or": 0,"ctr": 0.28,"rr": 0,"clicks": 23,"cost": 817.66,"rev": 2298.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 15019,"del": 14421,"dr": 96.0,"or": 0,"ctr": 0.33,"rr": 0,"clicks": 48,"cost": 1426.81,"rev": 549.25},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 15147,"del": 14600,"dr": 96.4,"or": 0,"ctr": 0.47,"rr": 0,"clicks": 68,"cost": 1438.96,"rev": 6643.75},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 14941,"del": 14359,"dr": 96.1,"or": 0,"ctr": 0.88,"rr": 0,"clicks": 126,"cost": 1419.39,"rev": 22049.9},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 14990,"del": 14452,"dr": 96.4,"or": 0,"ctr": 2.37,"rr": 0,"clicks": 343,"cost": 1424.05,"rev": 21730.0},
+{"name": "SMS - Post Purchase Journey (SOP)","ch": "SMS","sent": 7793,"del": 7320,"dr": 93.9,"or": 0,"ctr": 0.27,"rr": 0,"clicks": 20,"cost": 740.34,"rev": 2308.3},
+{"name": "Indigo Chips Credited","ch": "SMS","sent": 945,"del": 336,"dr": 35.6,"or": 0,"ctr": 1.79,"rr": 0,"clicks": 6,"cost": 89.78,"rev": 0.0},
+{"name": "SMS - Delay Dispatch","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "App-Install Churn (15 Days)","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Order Confirmed","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Order Packed","ch": "SMS","sent": 16332,"del": 16160,"dr": 98.9,"or": 0,"ctr": 5.99,"rr": 0,"clicks": 968,"cost": 1551.54,"rev": 0.0},
+{"name": "Delay Dispatch","ch": "SMS","sent": 1093,"del": 1079,"dr": 98.7,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 103.84,"rev": 0.0},
+{"name": "Order Cancelled","ch": "SMS","sent": 1381,"del": 1354,"dr": 98.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 131.19,"rev": 0.0},
+{"name": "Partially Fulfilled","ch": "SMS","sent": 4537,"del": 4492,"dr": 99.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 431.01,"rev": 0.0},
+{"name": "Order Shipped","ch": "SMS","sent": 30235,"del": 29887,"dr": 98.8,"or": 0,"ctr": 8.25,"rr": 0,"clicks": 2467,"cost": 2872.32,"rev": 0.0},
+{"name": "Out for Delivery","ch": "SMS","sent": 30052,"del": 29681,"dr": 98.8,"or": 0,"ctr": 6.05,"rr": 0,"clicks": 1795,"cost": 2854.94,"rev": 0.0},
+{"name": "Order Delivered","ch": "SMS","sent": 17060,"del": 16892,"dr": 99.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 1620.7,"rev": 0.0},
+{"name": "Delivery Failed","ch": "SMS","sent": 459,"del": 426,"dr": 92.8,"or": 0,"ctr": 2.58,"rr": 0,"clicks": 11,"cost": 43.61,"rev": 0.0},
+{"name": "Visited Website","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Quick Upsell","ch": "SMS","sent": 18358,"del": 6778,"dr": 36.9,"or": 0,"ctr": 2.23,"rr": 0,"clicks": 151,"cost": 1744.01,"rev": 31231.09},
+{"name": "Post Purchase Feedback","ch": "SMS","sent": 12396,"del": 11554,"dr": 93.2,"or": 0,"ctr": 1.52,"rr": 0,"clicks": 176,"cost": 1177.62,"rev": 11263.84},
+{"name": "100D Journey","ch": "SMS","sent": 17701,"del": 11511,"dr": 65.0,"or": 0,"ctr": 0.25,"rr": 0,"clicks": 29,"cost": 1681.6,"rev": 1909.95},
+{"name": "100D Journey","ch": "SMS","sent": 18798,"del": 11912,"dr": 63.4,"or": 0,"ctr": 0.14,"rr": 0,"clicks": 17,"cost": 1785.81,"rev": 1898.0},
+{"name": "Purchase Anniversary","ch": "SMS","sent": 6292,"del": 5995,"dr": 95.3,"or": 0,"ctr": 0.13,"rr": 0,"clicks": 8,"cost": 597.74,"rev": 0.0},
+{"name": "Purchase Anniversary","ch": "SMS","sent": 8639,"del": 8258,"dr": 95.6,"or": 0,"ctr": 0.5,"rr": 0,"clicks": 41,"cost": 820.71,"rev": 0.0},
+{"name": "App Install - No Purchase (15 Days)","ch": "SMS","sent": 17876,"del": 7171,"dr": 40.1,"or": 0,"ctr": 0.45,"rr": 0,"clicks": 32,"cost": 1698.22,"rev": 0.0},
+{"name": "Order Confirmed","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "IndiGo - Order Confirmed","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "IndiGo Sign up","ch": "SMS","sent": 18392,"del": 12738,"dr": 69.3,"or": 0,"ctr": 0.9,"rr": 0,"clicks": 115,"cost": 1747.24,"rev": 7428.6},
+{"name": "IndiGo - Order Confirmed","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "IndiGo - Order Confirmed","ch": "SMS","sent": 116,"del": 30,"dr": 25.9,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 11.02,"rev": 0.0},
+{"name": "Visited Website","ch": "SMS","sent": 1159,"del": 724,"dr": 62.5,"or": 0,"ctr": 0.55,"rr": 0,"clicks": 4,"cost": 110.11,"rev": 0.0},
+{"name": "Welcome Journey","ch": "SMS","sent": 19253,"del": 13047,"dr": 67.8,"or": 0,"ctr": 0.92,"rr": 0,"clicks": 120,"cost": 1829.04,"rev": 16224.25},
+{"name": "Welcome Journey","ch": "SMS","sent": 23888,"del": 15989,"dr": 66.9,"or": 0,"ctr": 0.54,"rr": 0,"clicks": 87,"cost": 2269.36,"rev": 0.0},
+{"name": "Welcome Journey","ch": "SMS","sent": 26537,"del": 17690,"dr": 66.7,"or": 0,"ctr": 0.36,"rr": 0,"clicks": 64,"cost": 2521.01,"rev": 29511.199999999997},
+{"name": "Welcome Journey","ch": "SMS","sent": 27350,"del": 18231,"dr": 66.7,"or": 0,"ctr": 0.35,"rr": 0,"clicks": 64,"cost": 2598.25,"rev": 9016.7},
+{"name": "App Install - 7 Days","ch": "SMS","sent": 5437,"del": 2338,"dr": 43.0,"or": 0,"ctr": 1.28,"rr": 0,"clicks": 30,"cost": 516.51,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "SMS","sent": 2120,"del": 791,"dr": 37.3,"or": 0,"ctr": 1.01,"rr": 0,"clicks": 8,"cost": 201.4,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "SMS","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Cart","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Cart","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Cart","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Order Confirmation (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Product","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Product","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Cart","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Cart","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Cart","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Product","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Product","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Order Confirmation","ch": "WhatsApp","sent": 26611,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 1,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandoned Checkout GK","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Whatsapp - Post Purchase Journey","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Whatsapp - Post Purchase Journey","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Whatsapp - Post Purchase Journey","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Whatsapp - Post Purchase Journey","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Whatsapp - Post Purchase Journey","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Whatsapp - Post Purchase Journey","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA & SMS - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "SMS & WA - Order Shipment (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Partial Fulfilled (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Product (SOP)","ch": "WhatsApp","sent": 26872,"del": 12699,"dr": 47.3,"or": 0,"ctr": 6.32,"rr": 64.5,"clicks": 802,"cost": 10413.18,"rev": 127683.16999999998},
+{"name": "WA - Ab Product (SOP)","ch": "WhatsApp","sent": 29791,"del": 14697,"dr": 49.3,"or": 0,"ctr": 8.38,"rr": 69.3,"clicks": 1232,"cost": 12051.54,"rev": 120237.23999999999},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Checkout (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Checkout (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Checkout (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Post Delivery Credit - App Install","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "App Uninstall Flow","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandon Collection (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandon Collection (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandon Collection (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandon Collection (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Checkout (SOP)","ch": "WhatsApp","sent": 3401,"del": 1666,"dr": 49.0,"or": 0,"ctr": 10.5,"rr": 69.0,"clicks": 175,"cost": 1366.12,"rev": 41324.0},
+{"name": "WA - Ab Checkout (SOP)","ch": "WhatsApp","sent": 6718,"del": 3075,"dr": 45.8,"or": 0,"ctr": 10.34,"rr": 68.2,"clicks": 318,"cost": 2521.5,"rev": 69304.36},
+{"name": "WA - Ab Checkout (SOP)","ch": "WhatsApp","sent": 7034,"del": 3358,"dr": 47.7,"or": 0,"ctr": 16.32,"rr": 71.2,"clicks": 548,"cost": 2753.56,"rev": 135072.35000000003},
+{"name": "WA - Ab Checkout (SOP)","ch": "WhatsApp","sent": 3295,"del": 1653,"dr": 50.2,"or": 0,"ctr": 6.05,"rr": 67.9,"clicks": 100,"cost": 1355.46,"rev": 34726.2},
+{"name": "Post Delivery Credit - App Install","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Abandon Collection (SOP)","ch": "WhatsApp","sent": 24804,"del": 12042,"dr": 48.5,"or": 0,"ctr": 3.81,"rr": 59.2,"clicks": 459,"cost": 9874.44,"rev": 48911.45},
+{"name": "WA - Abandon Collection (SOP)","ch": "WhatsApp","sent": 27488,"del": 13335,"dr": 48.5,"or": 0,"ctr": 4.31,"rr": 64.6,"clicks": 575,"cost": 10934.7,"rev": 76267.6},
+{"name": "All Channel - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Post Delivery Credit - App Install","ch": "WhatsApp","sent": 18342,"del": 10384,"dr": 56.6,"or": 0,"ctr": 7.16,"rr": 67.6,"clicks": 743,"cost": 1194.16,"rev": 109321.93999999999},
+{"name": "NPS (Promoters) - App Review + App Install","ch": "WhatsApp","sent": 125,"del": 86,"dr": 68.8,"or": 0,"ctr": 5.81,"rr": 67.4,"clicks": 5,"cost": 9.89,"rev": 0.0},
+{"name": "NPS (Promoters) - App Review + App Install","ch": "WhatsApp","sent": 74,"del": 59,"dr": 79.7,"or": 0,"ctr": 15.25,"rr": 74.6,"clicks": 9,"cost": 6.79,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "All Channel - Order Confirm (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 24030,"del": 14164,"dr": 58.9,"or": 0,"ctr": 3.46,"rr": 57.3,"clicks": 490,"cost": 11614.48,"rev": 56133.49999999999},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 24024,"del": 14130,"dr": 58.8,"or": 0,"ctr": 6.55,"rr": 60.4,"clicks": 925,"cost": 11586.6,"rev": 102820.09999999999},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 11879,"del": 7433,"dr": 62.6,"or": 0,"ctr": 2.09,"rr": 51.1,"clicks": 155,"cost": 6095.06,"rev": 21612.399999999998},
+{"name": "WA - Post Purchase Journey (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 1,"cost": 0.0,"rev": 0.0},
+{"name": "App-Install Churn (15 Days)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "App Visitors - Periodic","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "App Visitors - Periodic","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Order Confirmed","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Order Packed","ch": "WhatsApp","sent": 15570,"del": 14811,"dr": 95.1,"or": 0,"ctr": 18.2,"rr": 77.6,"clicks": 2696,"cost": 1703.27,"rev": 0.0},
+{"name": "Partially Fulfilled","ch": "WhatsApp","sent": 4206,"del": 4043,"dr": 96.1,"or": 0,"ctr": 21.84,"rr": 77.7,"clicks": 883,"cost": 3315.26,"rev": 0.0},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 5058,"del": 2518,"dr": 49.8,"or": 0,"ctr": 6.16,"rr": 63.0,"clicks": 155,"cost": 2064.76,"rev": 35317.1},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 5144,"del": 2321,"dr": 45.1,"or": 0,"ctr": 4.39,"rr": 62.3,"clicks": 102,"cost": 1903.22,"rev": 19605.05},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 11242,"del": 5587,"dr": 49.7,"or": 0,"ctr": 7.71,"rr": 67.8,"clicks": 431,"cost": 4581.34,"rev": 90893.77},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 5013,"del": 2405,"dr": 48.0,"or": 0,"ctr": 3.41,"rr": 64.5,"clicks": 82,"cost": 1972.1,"rev": 26278.700000000004},
+{"name": "WA - Ab Cart (SOP)","ch": "WhatsApp","sent": 4900,"del": 2453,"dr": 50.1,"or": 0,"ctr": 4.2,"rr": 62.3,"clicks": 103,"cost": 2011.46,"rev": 7458.84},
+{"name": "Quick Upsell","ch": "WhatsApp","sent": 17574,"del": 12299,"dr": 70.0,"or": 0,"ctr": 18.13,"rr": 79.6,"clicks": 2230,"cost": 10085.18,"rev": 451956.3100000001},
+{"name": "Post Purchase Feedback","ch": "WhatsApp","sent": 12057,"del": 7286,"dr": 60.4,"or": 0,"ctr": 5.72,"rr": 60.9,"clicks": 417,"cost": 5974.52,"rev": 30080.659999999996},
+{"name": "100D Journey","ch": "WhatsApp","sent": 16774,"del": 9650,"dr": 57.5,"or": 0,"ctr": 1.26,"rr": 46.0,"clicks": 122,"cost": 7913.0,"rev": 5350.75},
+{"name": "100D Journey","ch": "WhatsApp","sent": 17880,"del": 9739,"dr": 54.5,"or": 0,"ctr": 0.89,"rr": 48.4,"clicks": 87,"cost": 7985.98,"rev": 8197.55},
+{"name": "Purchase Anniversary","ch": "WhatsApp","sent": 7537,"del": 4765,"dr": 63.2,"or": 0,"ctr": 1.3,"rr": 44.9,"clicks": 62,"cost": 3907.3,"rev": 1148.0},
+{"name": "Purchase Anniversary","ch": "WhatsApp","sent": 5129,"del": 3047,"dr": 59.4,"or": 0,"ctr": 1.12,"rr": 44.7,"clicks": 34,"cost": 2498.54,"rev": 0.0},
+{"name": "App Uninstall Flow","ch": "WhatsApp","sent": 8204,"del": 4740,"dr": 57.8,"or": 0,"ctr": 3.21,"rr": 59.3,"clicks": 152,"cost": 3886.8,"rev": 0.0},
+{"name": "App Install - No Purchase (15 Days)","ch": "WhatsApp","sent": 20833,"del": 12259,"dr": 58.8,"or": 0,"ctr": 1.91,"rr": 60.4,"clicks": 234,"cost": 10052.38,"rev": 10440.0},
+{"name": "App Visitors - Periodic","ch": "WhatsApp","sent": 2498,"del": 1166,"dr": 46.7,"or": 0,"ctr": 2.83,"rr": 65.4,"clicks": 33,"cost": 956.12,"rev": 1365.72},
+{"name": "App Visitors - Periodic","ch": "WhatsApp","sent": 5064,"del": 2861,"dr": 56.5,"or": 0,"ctr": 1.68,"rr": 49.6,"clicks": 48,"cost": 2346.02,"rev": 2148.1},
+{"name": "Order Confirmed","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 3,"cost": 0.0,"rev": 0.0},
+{"name": "Welcome Journey","ch": "WhatsApp","sent": 23342,"del": 11759,"dr": 50.4,"or": 0,"ctr": 5.29,"rr": 73.1,"clicks": 622,"cost": 9642.38,"rev": 103974.90999999999},
+{"name": "Welcome Journey","ch": "WhatsApp","sent": 23213,"del": 10508,"dr": 45.3,"or": 0,"ctr": 3.91,"rr": 67.1,"clicks": 411,"cost": 8616.56,"rev": 53473.700000000004},
+{"name": "Welcome Journey","ch": "WhatsApp","sent": 24712,"del": 11702,"dr": 47.4,"or": 0,"ctr": 2.97,"rr": 64.5,"clicks": 348,"cost": 9595.64,"rev": 33053.1},
+{"name": "Duplicate - Order Confirmation - EDD Test (Internal)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Duplicate - Order Confirmation - EDD Test (Internal)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Duplicate - Order Confirmation - EDD Test (Internal)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Duplicate - Order Confirmation - EDD Test (Internal)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Duplicate - Order Confirmation - EDD Test (Internal)","ch": "WhatsApp","sent": 1,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Duplicate - Order Confirmation - EDD Test (Internal)","ch": "WhatsApp","sent": 3,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Duplicate - Order Confirmation - EDD Test (Internal)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "Duplicate - Order Confirmation - EDD Test (Internal)","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "WhatsApp","sent": 5180,"del": 3297,"dr": 63.6,"or": 0,"ctr": 6.85,"rr": 81.1,"clicks": 226,"cost": 2703.54,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "WhatsApp","sent": 5872,"del": 3374,"dr": 57.5,"or": 0,"ctr": 4.8,"rr": 76.0,"clicks": 162,"cost": 2766.68,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "WhatsApp","sent": 1991,"del": 1403,"dr": 70.5,"or": 0,"ctr": 4.35,"rr": 70.3,"clicks": 61,"cost": 1150.46,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "WhatsApp","sent": 1568,"del": 786,"dr": 50.1,"or": 0,"ctr": 3.69,"rr": 66.3,"clicks": 29,"cost": 644.52,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "WhatsApp","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0.0,"clicks": 0,"cost": 0.0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Product","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Product","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Cart","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Cart","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Abandoned Checkout GK","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase Journey","ch": "WebPush","sent": 218,"del": 218,"dr": 100.0,"or": 0,"ctr": 0.92,"rr": 0,"clicks": 2,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase Journey","ch": "WebPush","sent": 248,"del": 248,"dr": 100.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase Journey","ch": "WebPush","sent": 400,"del": 400,"dr": 100.0,"or": 0,"ctr": 0.5,"rr": 0,"clicks": 2,"cost": 0,"rev": 0.0},
+{"name": "WPush - Post Purchase Journey","ch": "WebPush","sent": 356,"del": 356,"dr": 100.0,"or": 0,"ctr": 1.69,"rr": 0,"clicks": 6,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Checkout GK","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Checkout GK","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Checkout GK","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Checkout GK","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Checkout GK","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Abandoned Checkout GK","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Product (SOP)","ch": "WebPush","sent": 1575,"del": 1575,"dr": 100.0,"or": 0,"ctr": 0.95,"rr": 0,"clicks": 15,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Product (SOP)","ch": "WebPush","sent": 1500,"del": 1500,"dr": 100.0,"or": 0,"ctr": 0.33,"rr": 0,"clicks": 5,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Product (SOP)","ch": "WebPush","sent": 1595,"del": 1595,"dr": 100.0,"or": 0,"ctr": 0.31,"rr": 0,"clicks": 5,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Product (SOP)","ch": "WebPush","sent": 1825,"del": 1825,"dr": 100.0,"or": 0,"ctr": 0.6,"rr": 0,"clicks": 11,"cost": 0,"rev": 999.0},
+{"name": "AppPush - Ab Product (AOP)","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Product (AOP)","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Product (AOP)","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Product (AOP)","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Cart (SOP)","ch": "WebPush","sent": 488,"del": 488,"dr": 100.0,"or": 0,"ctr": 0.82,"rr": 0,"clicks": 4,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Cart (SOP)","ch": "WebPush","sent": 511,"del": 511,"dr": 100.0,"or": 0,"ctr": 0.78,"rr": 0,"clicks": 4,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Cart (SOP)","ch": "WebPush","sent": 633,"del": 633,"dr": 100.0,"or": 0,"ctr": 0.79,"rr": 0,"clicks": 5,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Cart (AOP)","ch": "AppPush","sent": 6496,"del": 6496,"dr": 100.0,"or": 0,"ctr": 0.74,"rr": 0,"clicks": 48,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Cart (AOP)","ch": "AppPush","sent": 6708,"del": 6708,"dr": 100.0,"or": 0,"ctr": 1.0,"rr": 0,"clicks": 67,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Cart (AOP)","ch": "AppPush","sent": 8233,"del": 8233,"dr": 100.0,"or": 0,"ctr": 1.81,"rr": 0,"clicks": 149,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Checkout (SOP)","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Checkout (SOP)","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Checkout (SOP)","ch": "WebPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Checkout (SOP)","ch": "AppPush","sent": 7580,"del": 7580,"dr": 100.0,"or": 0,"ctr": 2.53,"rr": 0,"clicks": 192,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Checkout (SOP)","ch": "AppPush","sent": 6683,"del": 6683,"dr": 100.0,"or": 0,"ctr": 0.87,"rr": 0,"clicks": 58,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Checkout (SOP)","ch": "AppPush","sent": 6350,"del": 6350,"dr": 100.0,"or": 0,"ctr": 0.77,"rr": 0,"clicks": 49,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Product (AOP)","ch": "AppPush","sent": 14758,"del": 14758,"dr": 100.0,"or": 0,"ctr": 0.52,"rr": 0,"clicks": 77,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Product (AOP)","ch": "AppPush","sent": 14094,"del": 14094,"dr": 100.0,"or": 0,"ctr": 0.58,"rr": 0,"clicks": 82,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Product (AOP)","ch": "AppPush","sent": 13239,"del": 13239,"dr": 100.0,"or": 0,"ctr": 0.72,"rr": 0,"clicks": 95,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Ab Product (AOP)","ch": "AppPush","sent": 16359,"del": 16359,"dr": 100.0,"or": 0,"ctr": 1.58,"rr": 0,"clicks": 259,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Checkout (SOP)","ch": "WebPush","sent": 321,"del": 321,"dr": 100.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "WPush - Ab Checkout (SOP)","ch": "WebPush","sent": 327,"del": 327,"dr": 100.0,"or": 0,"ctr": 1.83,"rr": 0,"clicks": 6,"cost": 0,"rev": 2598.0},
+{"name": "WPush - Ab Checkout (SOP)","ch": "WebPush","sent": 368,"del": 368,"dr": 100.0,"or": 0,"ctr": 0.82,"rr": 0,"clicks": 3,"cost": 0,"rev": 3997.0},
+{"name": "AppPush - Shipped (SOP)","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 3,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Delivery Failed (SOP)","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Delivered","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Out for Delivery (SOP)","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 1,"cost": 0,"rev": 0.0},
+{"name": "NPS (Promoters) - App Review + App Install","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "NPS (Promoters) - App Review + App Install","ch": "AppPush","sent": 79,"del": 79,"dr": 100.0,"or": 0,"ctr": 5.06,"rr": 0,"clicks": 4,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 376,"del": 376,"dr": 100.0,"or": 0,"ctr": 0.27,"rr": 0,"clicks": 1,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 482,"del": 482,"dr": 100.0,"or": 0,"ctr": 0.83,"rr": 0,"clicks": 4,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 827,"del": 827,"dr": 100.0,"or": 0,"ctr": 0.97,"rr": 0,"clicks": 8,"cost": 0,"rev": 0.0},
+{"name": "AppPush - Post Purchase Journey","ch": "AppPush","sent": 659,"del": 659,"dr": 100.0,"or": 0,"ctr": 2.12,"rr": 0,"clicks": 14,"cost": 0,"rev": 0.0},
+{"name": "App-Install Churn (15 Days)","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "Order Shipped","ch": "AppPush","sent": 10056,"del": 10056,"dr": 100.0,"or": 0,"ctr": 4.74,"rr": 0,"clicks": 477,"cost": 0,"rev": 0.0},
+{"name": "Out for Delivery","ch": "AppPush","sent": 10315,"del": 10315,"dr": 100.0,"or": 0,"ctr": 4.06,"rr": 0,"clicks": 419,"cost": 0,"rev": 0.0},
+{"name": "Order Delivered","ch": "AppPush","sent": 6108,"del": 6108,"dr": 100.0,"or": 0,"ctr": 2.14,"rr": 0,"clicks": 131,"cost": 0,"rev": 0.0},
+{"name": "Delivery Failed","ch": "AppPush","sent": 141,"del": 141,"dr": 100.0,"or": 0,"ctr": 4.96,"rr": 0,"clicks": 7,"cost": 0,"rev": 0.0},
+{"name": "App Install - No Purchase (15 Days)","ch": "AppPush","sent": 16557,"del": 16557,"dr": 100.0,"or": 0,"ctr": 0.55,"rr": 0,"clicks": 91,"cost": 0,"rev": 1048.0},
+{"name": "Welcome Journey","ch": "AppPush","sent": 14723,"del": 14723,"dr": 100.0,"or": 0,"ctr": 1.73,"rr": 0,"clicks": 255,"cost": 0,"rev": 7955.4},
+{"name": "Welcome Journey","ch": "AppPush","sent": 12515,"del": 12515,"dr": 100.0,"or": 0,"ctr": 0.62,"rr": 0,"clicks": 77,"cost": 0,"rev": 1828.53},
+{"name": "Welcome Journey","ch": "AppPush","sent": 12226,"del": 12226,"dr": 100.0,"or": 0,"ctr": 0.49,"rr": 0,"clicks": 60,"cost": 0,"rev": 719.1},
+{"name": "Welcome Journey","ch": "AppPush","sent": 12421,"del": 12421,"dr": 100.0,"or": 0,"ctr": 0.58,"rr": 0,"clicks": 72,"cost": 0,"rev": 2337.2},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 6303,"del": 6303,"dr": 100.0,"or": 0,"ctr": 4.25,"rr": 0,"clicks": 268,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 8682,"del": 8682,"dr": 100.0,"or": 0,"ctr": 1.65,"rr": 0,"clicks": 143,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 8998,"del": 8998,"dr": 100.0,"or": 0,"ctr": 1.22,"rr": 0,"clicks": 110,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 8896,"del": 8896,"dr": 100.0,"or": 0,"ctr": 0.81,"rr": 0,"clicks": 72,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 3212,"del": 3212,"dr": 100.0,"or": 0,"ctr": 2.9,"rr": 0,"clicks": 93,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 4103,"del": 4103,"dr": 100.0,"or": 0,"ctr": 1.46,"rr": 0,"clicks": 60,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 2716,"del": 2716,"dr": 100.0,"or": 0,"ctr": 1.18,"rr": 0,"clicks": 32,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 2596,"del": 2596,"dr": 100.0,"or": 0,"ctr": 0.65,"rr": 0,"clicks": 17,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 591,"del": 591,"dr": 100.0,"or": 0,"ctr": 0.68,"rr": 0,"clicks": 4,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 34,"del": 34,"dr": 100.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0},
+{"name": "App Install - 7 Days","ch": "AppPush","sent": 0,"del": 0,"dr": 0.0,"or": 0,"ctr": 0.0,"rr": 0,"clicks": 0,"cost": 0,"rev": 0.0}];
+let dayGridBuilt=false;
+let activeDayEl=null;
+let chFilter='All';
+function buildDayGrid(){
+  dayGridBuilt=true;
+  const days={};
+  D.campaigns.forEach(c=>{
+    if(!days[c.date]) days[c.date]={rev:0,spend:0,count:0};
+    days[c.date].rev+=c.revenue;
+    days[c.date].spend+=c.cost;
+    days[c.date].count++;
+  });
+  const sorted=Object.keys(days).sort();
+  const grid=document.getElementById('day-grid');
+  grid.innerHTML=sorted.map(d=>{
+    const info=days[d];
+    const roas=info.spend>0?info.rev/info.spend:null;
+    const rhtml=roas===null?'<span style="color:#9ca3af;font-size:12px">Free channels</span>'
+      :(roas>=3?'<span style="color:#166534;font-size:12px">ROAS '+roas.toFixed(1)+'x</span>'
+        :roas>=1?'<span style="color:#854d0e;font-size:12px">ROAS '+roas.toFixed(1)+'x</span>'
+        :'<span style="color:#991b1b;font-size:12px">ROAS '+roas.toFixed(1)+'x</span>');
+    const dt=new Date(d+'T00:00:00');
+    const label=dt.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+    return '<div class="day-card" onclick="showDay(\''+d+'\',this)">'
+      +'<div class="day-date">'+label+'</div>'
+      +'<div class="day-rev">&#8377;'+info.rev.toLocaleString('en-IN',{maximumFractionDigits:0})+'</div>'
+      +'<div class="day-meta">'+info.count+' campaigns</div>'
+      +'<div class="day-roas">'+rhtml+'</div>'
+      +'</div>';
+  }).join('');
+}
+function showDay(d,el){
+  if(activeDayEl) activeDayEl.classList.remove('active');
+  el.classList.add('active'); activeDayEl=el;
+  chFilter='All';
+  const camps=D.campaigns.filter(c=>c.date===d);
+  const channels=[...new Set(camps.map(c=>c.channel))];
+  const btns=document.getElementById('ch-filter-btns');
+  btns.innerHTML='<button class="ch-btn active" onclick="filterCh(\'All\',this)">All</button>'
+    +channels.map(ch=>'<button class="ch-btn" onclick="filterCh(\''+ch+'\',this)">'+ch+'</button>').join('');
+  const dt=new Date(d+'T00:00:00');
+  document.getElementById('detail-title').textContent=dt.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('detail-card').style.display='';
+  renderCamps(camps);
+}
+function filterCh(ch,el){
+  chFilter=ch;
+  document.querySelectorAll('#ch-filter-btns .ch-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  const d=activeDayEl?activeDayEl.dataset.date||'':
+    [...document.querySelectorAll('.day-card.active')].map(e=>{
+      const txt=e.querySelector('.day-date').textContent;return txt;})[0]||'';
+  const activeCard=document.querySelector('.day-card.active');
+  const date=activeCard?D.campaigns.find(c=>{
+    const dt=new Date(c.date+'T00:00:00');
+    return dt.toLocaleDateString('en-IN',{day:'numeric',month:'short'})===activeCard.querySelector('.day-date').textContent;
+  })?.date:'';
+  if(date) renderCamps(D.campaigns.filter(c=>c.date===date));
+}
+const order=['WhatsApp','SMS','Email','AppPush','WebPush'];
+function renderCamps(allCamps){
+  const camps=chFilter==='All'?allCamps:allCamps.filter(c=>c.channel===chFilter);
+  camps.sort((a,b)=>{const ai=order.indexOf(a.channel),bi=order.indexOf(b.channel);return ai!==bi?ai-bi:b.revenue-a.revenue;});
+  const tbody=document.getElementById('detail-body');
+  if(!camps.length){tbody.innerHTML='<tr><td colspan="12" style="text-align:center;color:#9ca3af;padding:24px">No campaigns</td></tr>';return;}
+  tbody.innerHTML=camps.map(c=>{
+    const op=c.open_pct!=null?c.open_pct+'%':'<span class="muted">—</span>';
+    const rp=c.read_pct!=null?c.read_pct+'%':'<span class="muted">—</span>';
+    return '<tr>'
+      +'<td style="text-align:left;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="'+c.name+'">'+c.name+'</td>'
+      +'<td style="text-align:left"><span class="ch-tag '+(CH_TAGS[c.channel]||'')+'">'+c.channel+'</span></td>'
+      +'<td style="text-align:left">'+(c.sent_time||'—')+'</td>'
+      +'<td>'+c.sent.toLocaleString('en-IN')+'</td>'
+      +'<td>'+c.del_pct+'%</td>'
+      +'<td>'+op+'</td>'
+      +'<td>'+rp+'</td>'
+      +'<td>'+c.ctr+'%</td>'
+      +'<td>'+c.clicks.toLocaleString('en-IN')+'</td>'
+      +'<td>'+(c.cost>0?fmtINR(c.cost):'<span class="muted">Free</span>')+'</td>'
+      +'<td>'+fmtINR(c.revenue)+'</td>'
+      +'<td>'+roasBadge(c.roas)+'</td>'
+      +'</tr>';
+  }).join('');
+}
+let flowChFilter='All';
+const allFlowRows=Array.from(document.querySelectorAll('#flows-body tr'));
+function setFlowCh(ch,el){
+  flowChFilter=ch; filterFlows();
+}
+function filterFlows(){
+  const q=(document.getElementById('flow-search').value||'').toLowerCase();
+  allFlowRows.forEach(row=>{
+    const name=(row.cells[0]?.textContent||'').toLowerCase();
+    const ch=(row.cells[1]?.textContent||'').trim();
+    row.style.display=(flowChFilter==='All'||ch===flowChFilter)&&(!q||name.includes(q))?'':'none';
+  });
+}
+</script>
+</body></html>

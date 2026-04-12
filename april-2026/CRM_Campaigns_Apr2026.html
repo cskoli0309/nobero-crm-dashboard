@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nobero CRM Campaigns — April 2026</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f7fa;color:#1a1d23;font-size:14px;line-height:1.5}
+.header{background:#fff;border-bottom:1px solid #e5e7eb;padding:16px 24px;display:flex;align-items:center;gap:12px}
+.header-logo{font-size:17px;font-weight:700;color:#111}
+.header-sub{font-size:13px;color:#6b7280}
+.header-badge{margin-left:auto;background:#eff6ff;color:#2563eb;font-size:12px;font-weight:600;padding:3px 10px;border-radius:12px;border:1px solid #bfdbfe}
+.content{padding:20px;max-width:1600px;margin:0 auto}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;margin-bottom:18px;overflow:hidden}
+.card-header{padding:14px 20px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.card-title{font-size:14px;font-weight:600;color:#111}
+.card-body{padding:18px}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.day-card{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:14px;cursor:pointer;transition:border-color .15s,background .15s}
+.day-card:hover{border-color:#93c5fd;background:#f0f9ff}
+.day-card.active{border-color:#2563eb;background:#eff6ff}
+.day-date{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.6px}
+.day-rev{font-size:18px;font-weight:700;color:#111;margin:4px 0 2px}
+.day-meta{font-size:11px;color:#9ca3af}
+.day-roas{font-size:12px;font-weight:600;margin-top:5px}
+.detail-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.detail-title{font-size:15px;font-weight:700;color:#111}
+.detail-stats{display:flex;gap:16px;margin-left:auto;flex-wrap:wrap}
+.stat-chip{font-size:12px;color:#6b7280}
+.stat-chip b{color:#111}
+.ch-filters{display:flex;gap:6px;flex-wrap:wrap}
+.ch-btn{padding:4px 12px;border-radius:20px;border:1px solid #e5e7eb;background:#fff;font-size:12px;font-weight:500;color:#6b7280;cursor:pointer;transition:all .12s}
+.ch-btn:hover{background:#f3f4f6}
+.ch-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:#f9fafb;color:#6b7280;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding:9px 11px;text-align:right;border-bottom:2px solid #e5e7eb;white-space:nowrap;position:sticky;top:0;z-index:1}
+thead th:first-child,thead th:nth-child(2),thead th:nth-child(3){text-align:left}
+tbody td{padding:9px 11px;border-bottom:1px solid #f3f4f6;color:#374151;text-align:right;white-space:nowrap;vertical-align:middle}
+tbody td:first-child{text-align:left;max-width:260px;overflow:hidden;text-overflow:ellipsis;font-weight:500;color:#111}
+tbody td:nth-child(2){text-align:left}
+tbody td:nth-child(3){text-align:left;color:#6b7280;font-size:12px}
+tbody tr:hover td{background:#f9fafb}
+tbody tr:last-child td{border-bottom:none}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11.5px;font-weight:600}
+.bg{background:#dcfce7;color:#166534}
+.by{background:#fef9c3;color:#854d0e}
+.br{background:#fee2e2;color:#991b1b}
+.muted{color:#d1d5db;font-size:13px}
+.ch-tag{display:inline-block;padding:2px 7px;border-radius:8px;font-size:11px;font-weight:600}
+.ch-email{background:#dbeafe;color:#1d4ed8}
+.ch-whatsapp{background:#dcfce7;color:#15803d}
+.ch-sms{background:#fef3c7;color:#92400e}
+.ch-apppush{background:#ede9fe;color:#6d28d9}
+.ch-webpush{background:#cffafe;color:#0e7490}
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <div class="header-logo">Nobero CRM — Campaigns</div>
+    <div class="header-sub">April 2026</div>
+  </div>
+  <div class="header-badge">Data as of 12 Apr 2026</div>
+</div>
+<div class="content">
+  <div class="card">
+    <div class="card-header"><div class="card-title">Select a Day</div></div>
+    <div class="card-body">
+      <div class="day-grid" id="day-grid"></div>
+    </div>
+  </div>
+  <div id="detail-section" style="display:none">
+    <div class="card">
+      <div class="card-header">
+        <div class="detail-bar">
+          <div class="detail-title" id="detail-title"></div>
+          <div class="detail-stats" id="detail-stats"></div>
+        </div>
+        <div class="ch-filters" id="ch-filters"></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th>Campaign</th><th>Channel</th><th>Time</th>
+            <th>Sent</th><th>Delivered</th><th>Del%</th>
+            <th>Open%</th><th>CTR%</th><th>Read%</th>
+            <th>Clicks</th><th>Spend</th><th>Revenue</th><th>ROAS</th>
+          </tr></thead>
+          <tbody id="camp-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const CAMPS = [
+    {date:"2026-04-01",sent_time:"14:56",channel:"Email",name:"E - April Fool - Eng 120D",sent:727977,delivered:713976,del_rate:98.08,open_rate:48.26,ctr:0.28,read_rate:null,clicks:2024,spend:0.0,revenue:464088.51,roas:null},
+    {date:"2026-04-03",sent_time:"09:00",channel:"Email",name:"E - Friday=AppDay - Eng 120D - 03rd Apr'26",sent:728934,delivered:715026,del_rate:98.09,open_rate:47.56,ctr:0.25,read_rate:null,clicks:1801,spend:0.0,revenue:795146.51,roas:null},
+    {date:"2026-04-06",sent_time:"17:38",channel:"Email",name:"E - IPL - Eng 120D",sent:728006,delivered:713999,del_rate:98.08,open_rate:46.44,ctr:0.21,read_rate:null,clicks:1497,spend:0.0,revenue:476101.93,roas:null},
+    {date:"2026-04-08",sent_time:"11:26",channel:"Email",name:"E - UPF Jacket - Eng Buyers 180D",sent:379564,delivered:372452,del_rate:98.13,open_rate:36.24,ctr:0.33,read_rate:null,clicks:1243,spend:0.0,revenue:939322.94,roas:null},
+    {date:"2026-04-08",sent_time:"11:33",channel:"Email",name:"E - UPF Jacket - Eng NonBuyers 180D",sent:522706,delivered:511473,del_rate:97.85,open_rate:46.43,ctr:0.21,read_rate:null,clicks:1051,spend:0.0,revenue:212163.83,roas:null},
+    {date:"2026-04-10",sent_time:"08:00",channel:"Email",name:"E - Friday=AppDay - App Users - 10th Apr'26",sent:137262,delivered:132575,del_rate:96.59,open_rate:10.97,ctr:0.1,read_rate:null,clicks:134,spend:0.0,revenue:65670.77,roas:null},
+    {date:"2026-04-11",sent_time:"09:00",channel:"Email",name:"E - Pet Day - Eng 120D",sent:725831,delivered:712044,del_rate:98.1,open_rate:34.21,ctr:0.23,read_rate:null,clicks:1609,spend:0.0,revenue:209489.45,roas:null},
+    {date:"2026-04-12",sent_time:"09:00",channel:"Email",name:"E - Travel Tee - Eng Buyers 120D",sent:20485,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-12",sent_time:"09:30",channel:"Email",name:"E - Travel Tee - Eng NonBuyers 120D",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-03",sent_time:"16:00",channel:"SMS",name:"S - Friday=Appday - App User & Click (120D)",sent:23752,delivered:19011,del_rate:80.04,open_rate:null,ctr:0.48,read_rate:null,clicks:92,spend:2256.44,revenue:11788.3,roas:5.22},
+    {date:"2026-04-03",sent_time:"16:20",channel:"SMS",name:"S - Friday=Appday - App User & EA (120D)",sent:53917,delivered:34735,del_rate:64.42,open_rate:null,ctr:0.18,read_rate:null,clicks:63,spend:5122.11,revenue:9944.85,roas:1.94},
+    {date:"2026-04-03",sent_time:"16:40",channel:"SMS",name:"S - Friday=Appday - ATC/Checkout 30D",sent:95482,delivered:63156,del_rate:66.14,open_rate:null,ctr:0.43,read_rate:null,clicks:272,spend:9070.79,revenue:29950.15,roas:3.3},
+    {date:"2026-04-10",sent_time:"17:00",channel:"SMS",name:"S - Friday=Appday - App User & Click (120D)",sent:23967,delivered:18335,del_rate:76.5,open_rate:null,ctr:0.51,read_rate:null,clicks:93,spend:2276.87,revenue:9059.04,roas:3.98},
+    {date:"2026-04-10",sent_time:"17:20",channel:"SMS",name:"S - Friday=Appday - App User & EA (120D)",sent:55400,delivered:34339,del_rate:61.98,open_rate:null,ctr:0.13,read_rate:null,clicks:46,spend:5263.0,revenue:4900.04,roas:0.93},
+    {date:"2026-04-10",sent_time:"17:40",channel:"SMS",name:"S - Friday=Appday - ATC/Checkout 30D",sent:98096,delivered:62595,del_rate:63.81,open_rate:null,ctr:0.43,read_rate:null,clicks:272,spend:9319.12,revenue:25662.5,roas:2.75},
+    {date:"2026-04-11",sent_time:"12:00",channel:"SMS",name:"SMS - Mum Store - 20km",sent:45269,delivered:28554,del_rate:63.08,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:4300.56,revenue:0.0,roas:null},
+    {date:"2026-04-03",sent_time:"07:00",channel:"WhatsApp",name:"W - Friday=AppDay - App Users + Click 2X 60D - 03th Apr'26",sent:13131,delivered:8421,del_rate:64.13,open_rate:null,ctr:5.34,read_rate:63.98,clicks:450,spend:6905.22,revenue:22531.37,roas:3.26},
+    {date:"2026-04-03",sent_time:"07:30",channel:"WhatsApp",name:"W - Friday=AppDay - Checkout 3X 30D - 03th Apr'26",sent:18544,delivered:9847,del_rate:53.1,open_rate:null,ctr:4.01,read_rate:60.75,clicks:395,spend:8074.54,revenue:21071.77,roas:2.61},
+    {date:"2026-04-10",sent_time:"07:00",channel:"WhatsApp",name:"W - Friday=AppDay - App Users + Click 2X 60D - 03th Apr'26",sent:12554,delivered:8448,del_rate:67.29,open_rate:null,ctr:6.82,read_rate:63.52,clicks:576,spend:6927.36,revenue:27281.53,roas:3.94},
+    {date:"2026-04-10",sent_time:"07:30",channel:"WhatsApp",name:"W - Friday=AppDay - App Users + Click 2X 60D - 03th Apr'26",sent:19790,delivered:10006,del_rate:50.56,open_rate:null,ctr:4.71,read_rate:66.04,clicks:471,spend:8204.92,revenue:16149.09,roas:1.97},
+    {date:"2026-04-11",sent_time:"10:00",channel:"WhatsApp",name:"W - Mum Store - Buyers 20km",sent:16352,delivered:9146,del_rate:55.93,open_rate:null,ctr:2.91,read_rate:45.9,clicks:266,spend:7499.72,revenue:0.0,roas:null},
+    {date:"2026-04-01",sent_time:"19:00",channel:"WebPush",name:"WPush - Apr 01 - Bestsellers",sent:40278,delivered:40278,del_rate:100.0,open_rate:null,ctr:0.21,read_rate:null,clicks:83,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-01",sent_time:"19:00",channel:"AppPush",name:"AppPush - Apr 01 - Bestsellers",sent:191442,delivered:191442,del_rate:100.0,open_rate:null,ctr:0.3,read_rate:null,clicks:572,spend:0.0,revenue:8507.45,roas:null},
+    {date:"2026-04-02",sent_time:"21:10",channel:"WebPush",name:"WPush - Apr 02 - 21% OFF - Bestsellers",sent:40047,delivered:40047,del_rate:100.0,open_rate:null,ctr:0.19,read_rate:null,clicks:77,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-02",sent_time:"21:10",channel:"AppPush",name:"AppPush - Apr 02 - 21% OFF - Bestsellers",sent:189766,delivered:189766,del_rate:100.0,open_rate:null,ctr:0.38,read_rate:null,clicks:724,spend:0.0,revenue:5393.45,roas:null},
+    {date:"2026-04-03",sent_time:"11:00",channel:"WebPush",name:"WPush -  Apr 03 - Friday=AppDay - Live",sent:40423,delivered:40423,del_rate:100.0,open_rate:null,ctr:0.19,read_rate:null,clicks:78,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-03",sent_time:"11:00",channel:"AppPush",name:"AppPush - Apr 03 - Friday=AppDay - Live",sent:194855,delivered:194855,del_rate:100.0,open_rate:null,ctr:0.31,read_rate:null,clicks:607,spend:0.0,revenue:11490.0,roas:null},
+    {date:"2026-04-03",sent_time:"17:00",channel:"WebPush",name:"WPush -  Apr 03 - Friday=AppDay - Favourites",sent:40429,delivered:40429,del_rate:100.0,open_rate:null,ctr:0.18,read_rate:null,clicks:74,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-03",sent_time:"17:00",channel:"AppPush",name:"AppPush - Apr 03 - Friday=AppDay - Favourites",sent:194752,delivered:194752,del_rate:100.0,open_rate:null,ctr:0.27,read_rate:null,clicks:527,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-03",sent_time:"20:00",channel:"WebPush",name:"WPush -  Apr 03 - Friday=AppDay - Waiting",sent:40409,delivered:40409,del_rate:100.0,open_rate:null,ctr:0.24,read_rate:null,clicks:96,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-03",sent_time:"20:00",channel:"AppPush",name:"AppPush - Apr 03 - Friday=AppDay - Waiting",sent:194489,delivered:194489,del_rate:100.0,open_rate:null,ctr:0.41,read_rate:null,clicks:803,spend:0.0,revenue:11939.5,roas:null},
+    {date:"2026-04-03",sent_time:"22:00",channel:"WebPush",name:"WPush -  Apr 03 - Friday=AppDay - Final hours",sent:40398,delivered:40398,del_rate:100.0,open_rate:null,ctr:0.23,read_rate:null,clicks:92,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-03",sent_time:"22:00",channel:"AppPush",name:"AppPush - Apr 03 - Friday=AppDay - Final hours",sent:194466,delivered:194466,del_rate:100.0,open_rate:null,ctr:0.56,read_rate:null,clicks:1085,spend:0.0,revenue:34171.1,roas:null},
+    {date:"2026-04-06",sent_time:"20:00",channel:"WebPush",name:"WPush - Apr 06 - B3G15",sent:40559,delivered:40559,del_rate:100.0,open_rate:null,ctr:0.27,read_rate:null,clicks:109,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-06",sent_time:"20:00",channel:"AppPush",name:"AppPush - Apr 06 - B3G15",sent:193927,delivered:193927,del_rate:100.0,open_rate:null,ctr:0.37,read_rate:null,clicks:720,spend:0.0,revenue:5621.45,roas:null},
+    {date:"2026-04-07",sent_time:"20:00",channel:"WebPush",name:"WPush - Apr 07 - 150 OFF",sent:39021,delivered:39021,del_rate:100.0,open_rate:null,ctr:0.18,read_rate:null,clicks:71,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-07",sent_time:"20:00",channel:"AppPush",name:"AppPush - Apr 07 - 150 OFF",sent:194666,delivered:194666,del_rate:100.0,open_rate:null,ctr:0.34,read_rate:null,clicks:661,spend:0.0,revenue:5129.0,roas:null},
+    {date:"2026-04-08",sent_time:"18:00",channel:"WebPush",name:"WPush - Apr 08 - 3 Tees @ 999 - 01",sent:40493,delivered:40493,del_rate:100.0,open_rate:null,ctr:0.31,read_rate:null,clicks:127,spend:0.0,revenue:999.0,roas:null},
+    {date:"2026-04-08",sent_time:"18:00",channel:"AppPush",name:"AppPush - Apr 08 - 3 Tees @ 999 - 01",sent:197572,delivered:197572,del_rate:100.0,open_rate:null,ctr:0.66,read_rate:null,clicks:1311,spend:0.0,revenue:19710.3,roas:null},
+    {date:"2026-04-08",sent_time:"22:00",channel:"WebPush",name:"WPush - Apr 08 - 3 Tees @ 999 - 02",sent:40439,delivered:40439,del_rate:100.0,open_rate:null,ctr:0.3,read_rate:null,clicks:123,spend:0.0,revenue:999.0,roas:null},
+    {date:"2026-04-08",sent_time:"22:00",channel:"AppPush",name:"AppPush - Apr 08 - 3 Tees @ 999 - 02",sent:194754,delivered:194754,del_rate:100.0,open_rate:null,ctr:0.62,read_rate:null,clicks:1212,spend:0.0,revenue:29272.800000000003,roas:null},
+    {date:"2026-04-09",sent_time:"17:00",channel:"WebPush",name:"WPush - Apr 09 - Joggers @ 300 OFF - 01",sent:40472,delivered:40472,del_rate:100.0,open_rate:null,ctr:0.32,read_rate:null,clicks:130,spend:0.0,revenue:3096.0,roas:null},
+    {date:"2026-04-09",sent_time:"17:00",channel:"AppPush",name:"AppPush - Apr 09 - Joggers @ 300 OFF - 01",sent:195666,delivered:195666,del_rate:100.0,open_rate:null,ctr:0.56,read_rate:null,clicks:1093,spend:0.0,revenue:12064.720000000001,roas:null},
+    {date:"2026-04-09",sent_time:"22:00",channel:"WebPush",name:"WPush - Apr 09 - Joggers @ 300 OFF - 02",sent:40423,delivered:40423,del_rate:100.0,open_rate:null,ctr:0.23,read_rate:null,clicks:93,spend:0.0,revenue:1849.0,roas:null},
+    {date:"2026-04-09",sent_time:"22:00",channel:"AppPush",name:"AppPush - Apr 09 - Joggers @ 300 OFF - 02",sent:195241,delivered:195241,del_rate:100.0,open_rate:null,ctr:0.34,read_rate:null,clicks:662,spend:0.0,revenue:14886.76,roas:null},
+    {date:"2026-04-10",sent_time:"01:00",channel:"WebPush",name:"WPush -  Apr 10 - Friday=AppDay - Midnight",sent:40462,delivered:40462,del_rate:100.0,open_rate:null,ctr:0.22,read_rate:null,clicks:87,spend:0.0,revenue:1578.52,roas:null},
+    {date:"2026-04-10",sent_time:"01:00",channel:"AppPush",name:"AppPush - Apr 10 - Friday=AppDay - Midnight",sent:195699,delivered:195699,del_rate:100.0,open_rate:null,ctr:0.34,read_rate:null,clicks:658,spend:0.0,revenue:18878.94,roas:null},
+    {date:"2026-04-10",sent_time:"13:00",channel:"WebPush",name:"WPush -  Apr 10 - Friday=AppDay - No Questions",sent:40421,delivered:40421,del_rate:100.0,open_rate:null,ctr:0.22,read_rate:null,clicks:89,spend:0.0,revenue:886.52,roas:null},
+    {date:"2026-04-10",sent_time:"13:00",channel:"AppPush",name:"AppPush - Apr 10 - Friday=AppDay - No Questions",sent:195207,delivered:195207,del_rate:100.0,open_rate:null,ctr:0.31,read_rate:null,clicks:597,spend:0.0,revenue:22815.38,roas:null},
+    {date:"2026-04-10",sent_time:"16:00",channel:"WebPush",name:"WPush -  Apr 10 - Friday=AppDay - Adding",sent:40389,delivered:40389,del_rate:100.0,open_rate:null,ctr:0.14,read_rate:null,clicks:57,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-10",sent_time:"16:00",channel:"AppPush",name:"AppPush - Apr 10 - Friday=AppDay - Adding",sent:195158,delivered:195158,del_rate:100.0,open_rate:null,ctr:0.28,read_rate:null,clicks:546,spend:0.0,revenue:6491.44,roas:null},
+    {date:"2026-04-10",sent_time:"19:00",channel:"WebPush",name:"WPush -  Apr 10 - Friday=AppDay - No Conditions",sent:40388,delivered:40388,del_rate:100.0,open_rate:null,ctr:0.18,read_rate:null,clicks:72,spend:0.0,revenue:2597.0,roas:null},
+    {date:"2026-04-10",sent_time:"19:00",channel:"AppPush",name:"AppPush - Apr 10 - Friday=AppDay - No Conditions",sent:194915,delivered:194915,del_rate:100.0,open_rate:null,ctr:0.21,read_rate:null,clicks:416,spend:0.0,revenue:7575.08,roas:null},
+    {date:"2026-04-10",sent_time:"21:00",channel:"WebPush",name:"WPush -  Apr 10 - Friday=AppDay - Dont Miss",sent:40370,delivered:40370,del_rate:100.0,open_rate:null,ctr:0.2,read_rate:null,clicks:82,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-10",sent_time:"21:00",channel:"AppPush",name:"AppPush - Apr 10 - Friday=AppDay - Dont Miss",sent:194652,delivered:194652,del_rate:100.0,open_rate:null,ctr:0.22,read_rate:null,clicks:435,spend:0.0,revenue:8211.99,roas:null},
+    {date:"2026-04-10",sent_time:"23:00",channel:"WebPush",name:"WPush -  Apr 10 - Friday=AppDay - Few Hours",sent:40325,delivered:40325,del_rate:100.0,open_rate:null,ctr:0.17,read_rate:null,clicks:70,spend:0.0,revenue:899.0,roas:null},
+    {date:"2026-04-10",sent_time:"23:00",channel:"AppPush",name:"AppPush - Apr 10 - Friday=AppDay - Few Hours",sent:194518,delivered:194518,del_rate:100.0,open_rate:null,ctr:0.26,read_rate:null,clicks:505,spend:0.0,revenue:16315.33,roas:null},
+    {date:"2026-04-11",sent_time:"17:00",channel:"WebPush",name:"WPush - Apr 11 - 3 Tees @ 999",sent:40324,delivered:40324,del_rate:100.0,open_rate:null,ctr:0.32,read_rate:null,clicks:131,spend:0.0,revenue:999.0,roas:null},
+    {date:"2026-04-11",sent_time:"17:00",channel:"AppPush",name:"AppPush - Apr 11 - 3 Tees @ 999",sent:195039,delivered:195039,del_rate:100.0,open_rate:null,ctr:0.51,read_rate:null,clicks:999,spend:0.0,revenue:21677.0,roas:null},
+    {date:"2026-04-11",sent_time:"21:00",channel:"WebPush",name:"WPush - Apr 11 - 500 Unlocked",sent:40321,delivered:40321,del_rate:100.0,open_rate:null,ctr:0.14,read_rate:null,clicks:57,spend:0.0,revenue:1299.0,roas:null},
+    {date:"2026-04-11",sent_time:"21:00",channel:"AppPush",name:"AppPush - Apr 11 - 500 Unlocked",sent:194897,delivered:194897,del_rate:100.0,open_rate:null,ctr:0.29,read_rate:null,clicks:574,spend:0.0,revenue:999.0,roas:null},
+    {date:"2026-04-11",sent_time:"23:00",channel:"WebPush",name:"WPush - Apr 11 - 26% OFF",sent:40342,delivered:40342,del_rate:100.0,open_rate:null,ctr:0.15,read_rate:null,clicks:60,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-11",sent_time:"23:00",channel:"AppPush",name:"AppPush - Apr 11 - 26% OFF",sent:195040,delivered:195040,del_rate:100.0,open_rate:null,ctr:0.31,read_rate:null,clicks:601,spend:0.0,revenue:9665.9,roas:null},
+    {date:"2026-04-12",sent_time:"11:00",channel:"WebPush",name:"WPush - Apr 12 - 21% OFF Live",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-12",sent_time:"11:00",channel:"AppPush",name:"AppPush - Apr 12 - 21% OFF Live",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-12",sent_time:"15:00",channel:"WebPush",name:"WPush - Apr 12 - Free Product",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-12",sent_time:"15:00",channel:"AppPush",name:"AppPush - Apr 12 - Free Product",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-12",sent_time:"18:00",channel:"WebPush",name:"WPush - Apr 12 - B2G1",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-12",sent_time:"18:00",channel:"AppPush",name:"AppPush - Apr 12 - B2G1",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-12",sent_time:"21:00",channel:"WebPush",name:"WPush - Apr 12 - 500 OFF",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-12",sent_time:"21:00",channel:"AppPush",name:"AppPush - Apr 12 - 500 OFF",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-12",sent_time:"23:00",channel:"WebPush",name:"WPush - Apr 12 - 21% OFF",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null},
+    {date:"2026-04-12",sent_time:"23:00",channel:"AppPush",name:"AppPush - Apr 12 - 21% OFF",sent:0,delivered:0,del_rate:0.0,open_rate:null,ctr:0.0,read_rate:null,clicks:0,spend:0.0,revenue:0.0,roas:null}
+];
+
+// ─── DAY AGGREGATES ──────────────────────────────────────────────────────────
+const DAY = {};
+CAMPS.forEach(c => {
+  if (!DAY[c.date]) DAY[c.date] = {rev:0, spend:0, count:0};
+  DAY[c.date].rev   += c.revenue;
+  DAY[c.date].spend += c.spend;
+  DAY[c.date].count++;
+});
+
+const CH_TAGS = {'Email':'ch-email','WhatsApp':'ch-whatsapp','SMS':'ch-sms','AppPush':'ch-apppush','WebPush':'ch-webpush'};
+const CH_ORDER = ['WhatsApp','SMS','Email','AppPush','WebPush'];
+
+function fINR(v) { return '&#8377;' + v.toLocaleString('en-IN', {maximumFractionDigits:0}); }
+function fmtPct(v) { return v != null ? v + '%' : '<span class="muted">—</span>'; }
+function roasBadge(r) {
+  if (r === null || r === undefined) return '<span class="muted">—</span>';
+  const cls = r >= 3 ? 'bg' : r >= 1 ? 'by' : 'br';
+  return '<span class="badge ' + cls + '">' + r.toFixed(1) + 'x</span>';
+}
+
+// Build day grid
+(function() {
+  const sorted = Object.keys(DAY).sort();
+  const grid = document.getElementById('day-grid');
+  grid.innerHTML = sorted.map(d => {
+    const info = DAY[d];
+    const roas = info.spend > 0 ? info.rev / info.spend : null;
+    const dt = new Date(d + 'T00:00:00');
+    const label = dt.toLocaleDateString('en-IN', {day:'numeric', month:'short'});
+    let roasHtml = '';
+    if (roas === null) roasHtml = '<div class="day-roas" style="color:#9ca3af">Free channels</div>';
+    else {
+      const col = roas >= 3 ? '#166534' : roas >= 1 ? '#854d0e' : '#991b1b';
+      roasHtml = '<div class="day-roas" style="color:' + col + '">ROAS ' + roas.toFixed(1) + 'x</div>';
+    }
+    return '<div class="day-card" onclick="showDay('' + d + '',this)">'
+      + '<div class="day-date">' + label + '</div>'
+      + '<div class="day-rev">' + fINR(info.rev) + '</div>'
+      + '<div class="day-meta">' + info.count + ' campaigns</div>'
+      + roasHtml + '</div>';
+  }).join('');
+})();
+
+let activeDayEl = null;
+let activeDayDate = null;
+let chFilter = 'All';
+
+function showDay(d, el) {
+  if (activeDayEl) activeDayEl.classList.remove('active');
+  el.classList.add('active');
+  activeDayEl = el;
+  activeDayDate = d;
+  chFilter = 'All';
+
+  const camps = CAMPS.filter(c => c.date === d);
+  const channels = [...new Set(camps.map(c => c.channel))].sort((a,b) => CH_ORDER.indexOf(a) - CH_ORDER.indexOf(b));
+
+  // Channel filters
+  const filters = document.getElementById('ch-filters');
+  filters.innerHTML = '<button class="ch-btn active" onclick="filterCh('All',this)">All</button>'
+    + channels.map(ch => '<button class="ch-btn" onclick="filterCh('' + ch + '',this)">' + ch + '</button>').join('');
+
+  // Title + stats
+  const dt = new Date(d + 'T00:00:00');
+  document.getElementById('detail-title').textContent = dt.toLocaleDateString('en-IN', {day:'numeric',month:'long',year:'numeric'});
+  const info = DAY[d];
+  const roasStr = info.spend > 0 ? (info.rev/info.spend).toFixed(1) + 'x' : 'Free';
+  document.getElementById('detail-stats').innerHTML =
+    '<span class="stat-chip"><b>' + fINR(info.rev) + '</b> revenue</span>' +
+    '<span class="stat-chip"><b>' + fINR(info.spend) + '</b> spend</span>' +
+    '<span class="stat-chip"><b>' + roasStr + '</b> ROAS</span>' +
+    '<span class="stat-chip"><b>' + info.count + '</b> campaigns</span>';
+
+  document.getElementById('detail-section').style.display = '';
+  renderTable(camps);
+}
+
+function filterCh(ch, el) {
+  chFilter = ch;
+  document.querySelectorAll('#ch-filters .ch-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  if (activeDayDate) renderTable(CAMPS.filter(c => c.date === activeDayDate));
+}
+
+function renderTable(allCamps) {
+  const camps = chFilter === 'All' ? allCamps : allCamps.filter(c => c.channel === chFilter);
+  camps.sort((a, b) => {
+    const ai = CH_ORDER.indexOf(a.channel), bi = CH_ORDER.indexOf(b.channel);
+    return ai !== bi ? ai - bi : b.revenue - a.revenue;
+  });
+  const tbody = document.getElementById('camp-body');
+  if (!camps.length) {
+    tbody.innerHTML = '<tr><td colspan="13" style="text-align:center;color:#9ca3af;padding:24px">No campaigns</td></tr>';
+    return;
+  }
+  const spendCell = c => c.spend > 0 ? fINR(c.spend) : '<span class="muted">—</span>';
+  tbody.innerHTML = camps.map(c => '<tr>'
+    + '<td title="' + c.name + '">' + c.name + '</td>'
+    + '<td><span class="ch-tag ' + (CH_TAGS[c.channel]||'') + '">' + c.channel + '</span></td>'
+    + '<td>' + (c.sent_time || '—') + '</td>'
+    + '<td>' + c.sent.toLocaleString('en-IN') + '</td>'
+    + '<td>' + c.delivered.toLocaleString('en-IN') + '</td>'
+    + '<td>' + c.del_rate + '%</td>'
+    + '<td>' + fmtPct(c.open_rate) + '</td>'
+    + '<td>' + c.ctr + '%</td>'
+    + '<td>' + fmtPct(c.read_rate) + '</td>'
+    + '<td>' + c.clicks.toLocaleString('en-IN') + '</td>'
+    + '<td>' + spendCell(c) + '</td>'
+    + '<td>' + fINR(c.revenue) + '</td>'
+    + '<td>' + roasBadge(c.roas) + '</td>'
+    + '</tr>').join('');
+}
+</script>
+</body>
+</html>
